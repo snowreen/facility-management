@@ -1,0 +1,169 @@
+CREATE DATABASE `FACILITY_MANAGEMENT`;
+
+USE `FACILITY_MANAGEMENT`;
+
+CREATE TABLE `facility_address` (
+  `facility_address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `street_address` varchar(200) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `zipcode` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`facility_address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `facility` (
+  `facility_id` int(11) NOT NULL AUTO_INCREMENT,
+  `facility_name` varchar(100) DEFAULT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `total_area` decimal(10,2) DEFAULT NULL,
+  `facility_type` varchar(45) DEFAULT NULL,
+  `facility_address_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`facility_id`),
+  KEY `facility_address_fk_idx` (`facility_address_id`),
+  CONSTRAINT `facility_address_fk` FOREIGN KEY (`facility_address_id`) REFERENCES `facility_address` (`facility_address_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `building` (
+  `building_id` int(11) NOT NULL AUTO_INCREMENT,
+  `facility_id` int(11) DEFAULT NULL,
+  `num_of_elevators` int(11) DEFAULT NULL,
+  `num_of_floors` int(11) DEFAULT NULL,
+  `num_of_entrance` int(11) DEFAULT NULL,
+  PRIMARY KEY (`building_id`),
+  KEY `facility_id_fk_idx` (`facility_id`),
+  CONSTRAINT `facility_id_building_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `building_unit` (
+  `unit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `facility_id` int(11) DEFAULT NULL,
+  `building_id` int(11) DEFAULT NULL,
+  `level_num` int(11) DEFAULT NULL,
+  `num_of_rooms` int(11) DEFAULT NULL,
+  PRIMARY KEY (`unit_id`),
+  KEY `facility_id_building_unit_fk_idx` (`facility_id`),
+  KEY `building_id_fk_idx` (`building_id`),
+  CONSTRAINT `building_id_fk` FOREIGN KEY (`building_id`) REFERENCES `building` (`building_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `facility_id_building_unit_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `SSN` varchar(12) DEFAULT NULL,
+  `email` varchar(25) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `inspection` (
+  `inspection_id` int(11) NOT NULL AUTO_INCREMENT,
+  `inspection_date` date DEFAULT NULL,
+  `inspection_result` varchar(400) DEFAULT NULL,
+  `facility_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`inspection_id`),
+  KEY `facility_inspection_fk_idx` (`facility_id`),
+  CONSTRAINT `facility_inspection_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `lease_info` (
+  `lease_id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `security_deposite` decimal(8,2) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `facility_id` int(11) DEFAULT NULL,
+  `termination_date` date DEFAULT NULL,
+  `status` varchar(50) DEFAULT 'ACTIVE',
+  PRIMARY KEY (`lease_id`),
+  KEY `tenant_id_fk_idx` (`customer_id`),
+  KEY `facility_id_lease_fk_idx` (`facility_id`),
+  CONSTRAINT `customer_id_fk_lease` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `facility_id_lease_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `lease_payment` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount_due` decimal(8,2) DEFAULT NULL,
+  `payment_date` date DEFAULT NULL,
+  `lease_id` int(11) DEFAULT NULL,
+  `amount_paid` decimal(8,2) DEFAULT NULL,
+  `due_date` date DEFAULT NULL,
+  PRIMARY KEY (`payment_id`),
+  KEY `lease_payment_fk_idx` (`lease_id`),
+  CONSTRAINT `lease_payment_fk` FOREIGN KEY (`lease_id`) REFERENCES `lease_info` (`lease_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `maintenance_request` (
+  `main_req_id` int(11) NOT NULL AUTO_INCREMENT,
+  `scheduled_date_time` datetime DEFAULT NULL,
+  `facility_id` int(11) DEFAULT NULL,
+  `name_of_requester` varchar(80) DEFAULT NULL,
+  `detail` varchar(400) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `subject` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`main_req_id`),
+  KEY `facility_id_req_fk_idx` (`facility_id`),
+  CONSTRAINT `facility_id_req_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `maintenance` (
+  `maintenance_id` int(11) NOT NULL AUTO_INCREMENT,
+  `worker_name` varchar(50) DEFAULT NULL,
+  `main_req_id` int(11) DEFAULT NULL,
+  `worker_phone` varchar(45) DEFAULT NULL,
+  `start_date_time` datetime DEFAULT NULL,
+  `end_date_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`maintenance_id`),
+  UNIQUE KEY `mantenance_id_UNIQUE` (`maintenance_id`),
+  KEY `maintenance_req_id_idx` (`main_req_id`),
+  CONSTRAINT `main_req_id` FOREIGN KEY (`main_req_id`) REFERENCES `maintenance_request` (`main_req_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `maintenance_cost` (
+  `maintenance_id` int(11) NOT NULL AUTO_INCREMENT,
+  `material_cost` decimal(8,2) DEFAULT NULL,
+  `labor_cost` decimal(8,2) DEFAULT NULL,
+  `total_cost` decimal(8,2) DEFAULT NULL,
+  `is_paid` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`maintenance_id`),
+  CONSTRAINT `cost_fk` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance` (`maintenance_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `purchase_info` (
+  `purchase_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) DEFAULT NULL,
+  `facility_id` int(11) DEFAULT NULL,
+  `purchase_date` date DEFAULT NULL,
+  `puchase_price` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`purchase_id`),
+  KEY `purchase_facility_fk_idx` (`facility_id`),
+  KEY `purchase_customer_fk_idx` (`customer_id`),
+  CONSTRAINT `purchase_customer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `purchase_facility_fk` FOREIGN KEY (`facility_id`) REFERENCES `facility` (`facility_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `FACILITY_MANAGEMENT`.`customer` (`customer_id`, `first_name`, `last_name`, `SSN`, `email`, `phone`) VALUES ('1', 'Syeda', 'Nowreen', '123456789', 'snowreen@luc.edu', '999-999-9999');
+
+INSERT INTO `FACILITY_MANAGEMENT`.`facility_address` (`facility_address_id`, `street_address`, `city`, `state`) VALUES ('123', 'michigan ave', 'Chicago', 'IL');
+
+INSERT INTO `FACILITY_MANAGEMENT`.`facility` (`facility_id`, `facility_name`, `capacity`, `total_area`, `facility_type`, `facility_address_id`) VALUES ('111', 'Lewis Tower', '10000', '5000', 'BUILDING', '123');
+
+INSERT INTO `FACILITY_MANAGEMENT`.`facility` (`facility_id`, `facility_name`, `capacity`, `total_area`, `facility_type`, `facility_address_id`) VALUES ('112', 'Computer Lab 1', '50', '500', 'UNIT', '123');
+
+INSERT INTO `FACILITY_MANAGEMENT`.`inspection` (`inspection_id`, `inspection_date`, `inspection_result`, `facility_id`) VALUES ('1', '2016-02-15', 'Everything is good', '111');
+
+INSERT INTO `FACILITY_MANAGEMENT`.`inspection` (`inspection_id`, `inspection_date`, `inspection_result`, `facility_id`) VALUES ('2', '2016-03-16', 'Main door needs to be fixed', '112');
+

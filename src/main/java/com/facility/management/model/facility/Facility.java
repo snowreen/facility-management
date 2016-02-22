@@ -7,7 +7,6 @@ public class Facility {
     private long capacity;
     private double totalArea;
     private String facilityType;
-    private String status;
     private FacilityAddress facilityAddress;
 
     public int getFacilityId() {
@@ -50,19 +49,23 @@ public class Facility {
         this.facilityType = facilityType;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public FacilityAddress getFacilityAddress() {
         return facilityAddress;
     }
 
     public void setFacilityAddress(FacilityAddress facilityAddress) {
         this.facilityAddress = facilityAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Facility {" +
+                "facilityId=" + facilityId +
+                ", facilityName='" + facilityName + '\'' +
+                ", capacity=" + capacity +
+                ", totalArea=" + totalArea +
+                ", facilityType='" + facilityType + '\'' +
+                ", facilityAddress=" + facilityAddress +
+                '}';
     }
 }

@@ -1,14 +1,11 @@
 package com.facility.management.model.facility;
 
-import java.util.List;
-
 public class Building extends Facility {
 
     private int buildingId;
     private int numOfFloors;
     private int noOfElevators;
     private int noOfEntrance;
-    private List<BuildingUnit> buildingUnits;
 
     public int getBuildingId() {
         return buildingId;
@@ -42,11 +39,19 @@ public class Building extends Facility {
         this.noOfEntrance = noOfEntrance;
     }
 
-    public List<BuildingUnit> getBuildingUnits() {
-        return buildingUnits;
-    }
-
-    public void setBuildingUnits(List<BuildingUnit> buildingUnits) {
-        this.buildingUnits = buildingUnits;
+    @Override
+    public String toString() {
+        return "Building{" +
+                "facilityId=" + this.getFacilityId() +
+                ", facilityName='" + this.getFacilityName() + '\'' +
+                ", capacity=" + this.getCapacity() +
+                ", totalArea=" + this.getTotalArea() +
+                ", facilityType='" + this.getFacilityType() + '\'' +
+                ", facilityAddress=" + this.getFacilityAddress() +
+                ", buildingId=" + buildingId +
+                ", numOfFloors=" + numOfFloors +
+                ", noOfElevators=" + noOfElevators +
+                ", noOfEntrance=" + noOfEntrance +
+                '}';
     }
 }

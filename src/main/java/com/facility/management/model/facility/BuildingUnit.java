@@ -38,4 +38,20 @@ public class BuildingUnit extends Facility {
     public void setNumOfRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
+
+    @Override
+    public String toString() {
+        return "BuildingUnit{" +
+                "facilityId=" + this.getFacilityId() +
+                ", facilityName='" + this.getFacilityName() + '\'' +
+                ", capacity=" + this.getCapacity() +
+                ", totalArea=" + this.getTotalArea() +
+                ", facilityType='" + this.getFacilityType() + '\'' +
+                ", facilityAddress=" + this.getFacilityAddress() +
+                ", unitId=" + unitId +
+                ", buildingId=" + buildingId +
+                ", levelNum=" + levelNum +
+                ", numOfRooms=" + numOfRooms +
+                '}';
+    }
 }

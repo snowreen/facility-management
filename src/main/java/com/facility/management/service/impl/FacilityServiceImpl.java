@@ -1,7 +1,10 @@
 package com.facility.management.service.impl;
 
 import com.facility.management.dal.FacilityDAO;
+import com.facility.management.model.facility.Building;
+import com.facility.management.model.facility.BuildingUnit;
 import com.facility.management.model.facility.Facility;
+import com.facility.management.model.facility.FacilityType;
 import com.facility.management.service.FacilityService;
 
 import java.util.List;
@@ -12,7 +15,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public List<Facility> listFacilities() {
-        return null;
+        return facilityDAO.getListOfFacilities();
     }
 
     @Override
@@ -22,7 +25,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public Long requestAvailableCapacity(int facilityId) {
-        return null;
+        return facilityDAO.getAvailableCapacity(facilityId);
     }
 
     @Override
@@ -32,12 +35,16 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addFacilityDetail(Facility facility) {
-
+        if (facility.getFacilityType().equals(FacilityType.BUILDING.name())) {
+            facilityDAO.addBuildingDetails((Building) facility);
+        } else if (facility.getFacilityType().equals(FacilityType.UNIT.name())) {
+            facilityDAO.addBuildingUnitDetails((BuildingUnit) facility);
+        }
     }
 
     @Override
     public Boolean removeFacility(int facilityId) {
-        return null;
+        return facilityDAO.removeFacility(facilityId);
     }
 
 }

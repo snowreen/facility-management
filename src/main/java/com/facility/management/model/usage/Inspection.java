@@ -40,4 +40,14 @@ public class Inspection {
     public void setFacilityId(int facilityId) {
         this.facilityId = facilityId;
     }
+
+    @Override
+    public String toString() {
+        return "Inspection {" +
+                "inspectionId=" + inspectionId +
+                ", inspectionResult='" + inspectionResult + '\'' +
+                ", inspectionDate=" + inspectionDate +
+                ", facilityId=" + facilityId +
+                '}';
+    }
 }

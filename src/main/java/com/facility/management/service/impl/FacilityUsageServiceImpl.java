@@ -1,42 +1,46 @@
 package com.facility.management.service.impl;
 
-import com.facility.management.model.usage.FacilityUseSchedule;
+import com.facility.management.dal.FacilityUsageDAO;
 import com.facility.management.model.usage.Inspection;
+import com.facility.management.model.usage.LeaseInfo;
 import com.facility.management.service.FacilityUsageService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class FacilityUsageServiceImpl implements FacilityUsageService {
 
+    private FacilityUsageDAO facilityUsageDAO = new FacilityUsageDAO();
+
     @Override
     public Boolean isInUseDuringInterval(int facilityId, Date beginDate, Date endDate) {
-        return null;
+        return facilityUsageDAO.isInUseDuringInterval(facilityId, beginDate, endDate);
     }
 
     @Override
-    public Boolean assignFacilityToUse(FacilityUseSchedule facilityUseSchedule) {
-        return null;
+    public Boolean assignFacilityToUse(LeaseInfo leaseInfo) {
+        return facilityUsageDAO.assignFacilityToUse(leaseInfo);
     }
 
     @Override
-    public Boolean vacateFacility(int facilityId) {
-        return null;
+    public Boolean vacateFacility(int facilityId, Date vacateDate) {
+        return facilityUsageDAO.vacateFacility(facilityId, vacateDate);
     }
 
     @Override
-    public List<Inspection> listInspections() {
-        return null;
+    public List<Inspection> listInspections(int facilityId) {
+        return facilityUsageDAO.getListOfInspections(facilityId);
     }
 
     @Override
-    public Double listActualUsage(int facilityId) {
-        return null;
+    public Map<Integer, Integer> listActualUsage() {
+        return facilityUsageDAO.getListOfActualUsage();
     }
 
     @Override
-    public Double calcUsageRate(int facilityId) {
-        return null;
+    public Map<Integer, Double> calcUsageRate() {
+        return facilityUsageDAO.getUsageRate();
     }
 
 }
