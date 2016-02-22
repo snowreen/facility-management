@@ -31,12 +31,12 @@ public class DBHelper {
 		try {
  
 			connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/FACILITY_MANAGEMENT?autoReconnect=true&useSSL=false", "root", "");
-			Statement st = connection.createStatement();
-			ResultSet rs = st.executeQuery("SELECT VERSION()");
+				Statement st = connection.createStatement();
+				ResultSet rs = st.executeQuery("SELECT VERSION()");
 
-            if (rs.next()) {
-                //System.out.println("DBHelper: The Database Version is " + rs.getString(1));
-            }
+	            if (rs.next()) {
+	                //System.out.println("DBHelper: The Database Version is " + rs.getString(1));
+	            }
  
 		} catch (SQLException e) {
  
@@ -46,7 +46,9 @@ public class DBHelper {
  
 		}
  
-		if (connection == null) {
+		if (connection != null) {
+			//System.out.println("DBHelper: You have a database connection!");
+		} else {
 			System.out.println("DBHelper: Failed to make connection!");
 		}
 		

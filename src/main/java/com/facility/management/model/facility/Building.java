@@ -1,11 +1,14 @@
 package com.facility.management.model.facility;
 
+import java.util.List;
+
 public class Building extends Facility {
 
     private int buildingId;
     private int numOfFloors;
     private int noOfElevators;
     private int noOfEntrance;
+    private List<BuildingUnit> units;
 
     public int getBuildingId() {
         return buildingId;
@@ -37,6 +40,14 @@ public class Building extends Facility {
 
     public void setNoOfEntrance(int noOfEntrance) {
         this.noOfEntrance = noOfEntrance;
+    }
+
+    public List<BuildingUnit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<BuildingUnit> units) {
+        this.units = units;
     }
 
     @Override

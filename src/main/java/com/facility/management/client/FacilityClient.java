@@ -1,6 +1,9 @@
 package com.facility.management.client;
 
 import com.facility.management.model.facility.*;
+import com.facility.management.model.maintenance.Maintenance;
+import com.facility.management.model.maintenance.MaintenanceCost;
+import com.facility.management.model.maintenance.MaintenanceRequest;
 import com.facility.management.model.usage.Inspection;
 import com.facility.management.model.usage.LeaseInfo;
 import com.facility.management.service.FacilityMaintenanceService;
@@ -67,11 +70,61 @@ public class FacilityClient {
         printUsageRateByFacility();
 
 
+        //create maintenance request
+        createMaintenanceRequest(55, 99);
+        createMaintenanceRequest(56, 101);
+
+        //schedule maintenance
+        scheduleMaintenance(1, 55);
+        scheduleMaintenance(2, 56);
+
+        //printMaintenanceCost
+        printMaintenanceCost(1);
+        printMaintenanceCost(2);
+
+
         //remove facility
         removeFacility(99);
         removeFacility(101);
 
 
+    }
+
+    private static void printMaintenanceCost(int maintenanceId) {
+        MaintenanceCost maintenanceCost = new MaintenanceCost();
+        maintenanceCost.setMaintenanceId(maintenanceId);
+        maintenanceCost.setMaterialCost(100);
+        maintenanceCost.setLaborCost(25);
+        maintenanceCost.setTotalCost(maintenanceCost.getMaterialCost() + maintenanceCost.getLaborCost());
+        maintenanceCost.setPaid(true);
+        System.out.println("Maintenance id: " + maintenanceId +
+                " total cost is " + facilityMaintenanceService.calcMaintenanceCostForFacility(maintenanceCost));
+        System.out.println();
+    }
+
+    private static void scheduleMaintenance(int maintenanceId, int mainReqId) {
+        Maintenance maintenance = new Maintenance();
+        maintenance.setMaintenanceId(maintenanceId);
+        maintenance.setMaintenanceReqId(mainReqId);
+        maintenance.setWorkerName("Alex");
+        maintenance.setWorkerPhoneNum("630-800-0969");
+        maintenance.setStartDateTime(DateUtil.createDateTime(2016, 3, 21, 13, 00));
+        maintenance.setEndDateTime(DateUtil.createDateTime(2016, 3, 21, 14, 00));
+        facilityMaintenanceService.scheduleMaintenance(maintenance);
+        System.out.println();
+    }
+
+    private static void createMaintenanceRequest(int mainReqId, int facilityId) {
+        MaintenanceRequest maintenanceRequest = new MaintenanceRequest();
+        maintenanceRequest.setMaintenanceReqId(mainReqId);
+        maintenanceRequest.setFacilityId(facilityId);
+        maintenanceRequest.setRequestDetail("water leaking from shower faucet");
+        maintenanceRequest.setRequesterName("Syeda");
+        maintenanceRequest.setRequesterEmail("snowreen@luc.edu");
+        maintenanceRequest.setRequestSubject("Shower broken");
+        maintenanceRequest.setScheduledDateTime(DateUtil.createDateTime(2016, 3, 21, 12, 55));
+        facilityMaintenanceService.makeFacilityMaintRequest(maintenanceRequest);
+        System.out.println();
     }
 
     private static void printUsageRateByFacility() {
@@ -140,6 +193,7 @@ public class FacilityClient {
         leaseInfo.setStartDate(DateUtil.getParsedDate("2016-03-01"));
         leaseInfo.setEndDate(DateUtil.getParsedDate("2016-06-30"));
         facilityUsageService.assignFacilityToUse(leaseInfo);
+        System.out.println();
     }
 
     private static void removeFacility(int facilityId) {
@@ -181,6 +235,7 @@ public class FacilityClient {
         facilityAddress.setZipCode("60502");
         facility.setFacilityAddress(facilityAddress);
         facilityService.addNewFacility(facility);
+        System.out.println();
     }
 
     private static void addFacilityDetail(int facilityId, String facilityType, Integer buildingId, Integer unitId) {
@@ -204,6 +259,7 @@ public class FacilityClient {
             buildingUnit.setFacilityType(facilityType);
             facilityService.addFacilityDetail(buildingUnit);
         }
+        System.out.println();
 
     }
 }

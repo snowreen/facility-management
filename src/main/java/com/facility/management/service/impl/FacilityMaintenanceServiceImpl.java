@@ -1,26 +1,34 @@
 package com.facility.management.service.impl;
 
+import com.facility.management.dal.FacilityMaintenanceDAO;
 import com.facility.management.model.maintenance.Maintenance;
+import com.facility.management.model.maintenance.MaintenanceCost;
 import com.facility.management.model.maintenance.MaintenanceRequest;
 import com.facility.management.service.FacilityMaintenanceService;
 
-import java.util.Date;
 import java.util.List;
 
 public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceService {
 
+    private FacilityMaintenanceDAO facilityMaintenanceDAO = new FacilityMaintenanceDAO();
+
     @Override
     public Boolean makeFacilityMaintRequest(MaintenanceRequest maintenanceRequest) {
-        return null;
+        return facilityMaintenanceDAO.createMaintenanceReq(maintenanceRequest);
     }
 
     @Override
-    public Boolean scheduleMaintenance(int maintenanceReqId, Date scheduledDateTime) {
-        return null;
+    public Boolean scheduleMaintenance(Maintenance maintenance) {
+        return facilityMaintenanceDAO.createMaintenanceSchedule(maintenance);
     }
 
     @Override
-    public Double calcMaintenanceCostForFacility(int facilityId) {
+    public Double calcMaintenanceCostForFacility(MaintenanceCost maintenanceCost) {
+        boolean isMaintenanceCostInserted = facilityMaintenanceDAO.createMaintenanceCost(maintenanceCost);
+        if (isMaintenanceCostInserted) {
+            return maintenanceCost.getTotalCost();
+        }
+        System.out.println("Maintenance Cost calculation failed !!!");
         return null;
     }
 

@@ -28,8 +28,7 @@ public class FacilityUsageDAO {
             facilityUsageStatement.setInt(6, leaseInfo.getFacilityId());
 
             int facilityUsageInsertResult = facilityUsageStatement.executeUpdate();
-
-
+            System.out.println("FacilityUsageDAO: *************** Query " + facilityUsageInsertQuery);
 
             if (facilityUsageInsertResult > 0) {
                 System.out.println("Facility Lease Info Inserted Successfully");

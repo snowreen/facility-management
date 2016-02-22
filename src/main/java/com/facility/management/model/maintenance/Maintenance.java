@@ -58,4 +58,13 @@ public class Maintenance {
     public void setEndDateTime(Date endDateTime) {
         this.endDateTime = endDateTime;
     }
+
+	@Override
+	public String toString() {
+		return "Maintenance [maintenanceId=" + maintenanceId
+				+ ", maintenanceReqId=" + maintenanceReqId + ", workerName="
+				+ workerName + ", workerPhoneNum=" + workerPhoneNum
+				+ ", startDateTime=" + startDateTime + ", endDateTime="
+				+ endDateTime + "]";
+	}
 }

@@ -67,4 +67,14 @@ public class MaintenanceRequest {
     public void setScheduledDateTime(Date scheduledDateTime) {
         this.scheduledDateTime = scheduledDateTime;
     }
+
+	@Override
+	public String toString() {
+		return "MaintenanceRequest [maintenanceReqId=" + maintenanceReqId
+				+ ", facilityId=" + facilityId + ", requesterName="
+				+ requesterName + ", requesterEmail=" + requesterEmail
+				+ ", requestSubject=" + requestSubject + ", requestDetail="
+				+ requestDetail + ", scheduledDateTime=" + scheduledDateTime
+				+ "]";
+	}
 }
