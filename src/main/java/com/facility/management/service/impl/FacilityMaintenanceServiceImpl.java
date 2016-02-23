@@ -1,12 +1,12 @@
 package com.facility.management.service.impl;
 
+import java.util.List;
+
 import com.facility.management.dal.FacilityMaintenanceDAO;
 import com.facility.management.model.maintenance.Maintenance;
 import com.facility.management.model.maintenance.MaintenanceCost;
 import com.facility.management.model.maintenance.MaintenanceRequest;
 import com.facility.management.service.FacilityMaintenanceService;
-
-import java.util.List;
 
 public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceService {
 
@@ -34,27 +34,27 @@ public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceServic
 
     @Override
     public Double calcProblemRateForFacility(int facilityId) {
-        return null;
+        return facilityMaintenanceDAO.getProblemRateForFacility(facilityId);
     }
 
     @Override
     public Long calcDownTimeForFacility(int facilityId) {
-        return null;
+        return facilityMaintenanceDAO.getDownTimeForFacility(facilityId);
     }
 
     @Override
     public List<MaintenanceRequest> listMaintRequests() {
-        return null;
+        return facilityMaintenanceDAO.getListOfFacilityMaintenanceReq();
     }
 
     @Override
     public List<Maintenance> listMaintenance() {
-        return null;
+        return facilityMaintenanceDAO.getListOfMaintenance();
     }
 
     @Override
     public List<String> listFacilityProblems(int facilityId) {
-        return null;
+        return facilityMaintenanceDAO.getListOfFacilityProblems(facilityId);
     }
 
 }

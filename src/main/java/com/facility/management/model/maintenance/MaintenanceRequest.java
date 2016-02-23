@@ -10,7 +10,7 @@ public class MaintenanceRequest {
     private String requesterEmail;
     private String requestSubject;
     private String requestDetail;
-    private Date scheduledDateTime;
+    private Date requestDate;
 
     public int getMaintenanceReqId() {
         return maintenanceReqId;
@@ -60,12 +60,12 @@ public class MaintenanceRequest {
         this.requestDetail = requestDetail;
     }
 
-    public Date getScheduledDateTime() {
-        return scheduledDateTime;
+    public Date getRequestDate() {
+        return requestDate;
     }
 
-    public void setScheduledDateTime(Date scheduledDateTime) {
-        this.scheduledDateTime = scheduledDateTime;
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
 	@Override
@@ -74,7 +74,7 @@ public class MaintenanceRequest {
 				+ ", facilityId=" + facilityId + ", requesterName="
 				+ requesterName + ", requesterEmail=" + requesterEmail
 				+ ", requestSubject=" + requestSubject + ", requestDetail="
-				+ requestDetail + ", scheduledDateTime=" + scheduledDateTime
+				+ requestDetail + ", requestDate=" + requestDate
 				+ "]";
 	}
 }

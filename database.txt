@@ -104,7 +104,7 @@ CREATE TABLE `lease_payment` (
 
 CREATE TABLE `maintenance_request` (
   `main_req_id` int(11) NOT NULL AUTO_INCREMENT,
-  `scheduled_date_time` datetime DEFAULT NULL,
+  `request_date` datetime DEFAULT NULL,
   `facility_id` int(11) DEFAULT NULL,
   `name_of_requester` varchar(80) DEFAULT NULL,
   `detail` varchar(400) DEFAULT NULL,
@@ -166,4 +166,6 @@ INSERT INTO `FACILITY_MANAGEMENT`.`facility` (`facility_id`, `facility_name`, `c
 INSERT INTO `FACILITY_MANAGEMENT`.`inspection` (`inspection_id`, `inspection_date`, `inspection_result`, `facility_id`) VALUES ('1', '2016-02-15', 'Everything is good', '111');
 
 INSERT INTO `FACILITY_MANAGEMENT`.`inspection` (`inspection_id`, `inspection_date`, `inspection_result`, `facility_id`) VALUES ('2', '2016-03-16', 'Main door needs to be fixed', '112');
+
+COMMIT;
 

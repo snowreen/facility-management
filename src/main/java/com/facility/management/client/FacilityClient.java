@@ -71,17 +71,40 @@ public class FacilityClient {
 
 
         //create maintenance request
-        createMaintenanceRequest(55, 99);
-        createMaintenanceRequest(56, 101);
+        createMaintenanceRequest(55, 99, 2016);
+        createMaintenanceRequest(56, 101, 2016);
+        createMaintenanceRequest(57, 99, 2016);
+        createMaintenanceRequest(58, 101, 2015);
+        createMaintenanceRequest(59, 99, 2015);
 
         //schedule maintenance
-        scheduleMaintenance(1, 55);
-        scheduleMaintenance(2, 56);
+        scheduleMaintenance(1, 58);
+        scheduleMaintenance(2, 59);
+        scheduleMaintenance(3, 55);
+        scheduleMaintenance(4, 56);
+        scheduleMaintenance(5, 57);
 
         //printMaintenanceCost
         printMaintenanceCost(1);
         printMaintenanceCost(2);
-
+        
+        //print all Maintenance Request
+        printAllFacilityMaintenanceReq();
+        
+        //print all Maintenance
+        printAllFacilityMaintenance();
+        
+        //print problem rate 
+        printProblemRateForFacility(99);
+        printProblemRateForFacility(101);
+        
+        //print total down time for facility
+        printDownTimeForFacility(99);
+        printDownTimeForFacility(101);
+        
+        //print problems for facility
+        printFacilityProblems(99);
+        printFacilityProblems(101);
 
         //remove facility
         removeFacility(99);
@@ -89,8 +112,29 @@ public class FacilityClient {
 
 
     }
+    
+    private static void printFacilityProblems(int facilityId) {
+        List<String> problemList = facilityMaintenanceService.listFacilityProblems(facilityId);
+        System.out.println("Printing problems for facility id : " + facilityId + " ----- ");
+        for (String problem : problemList) {
+            System.out.println(problem);
+        }
+        System.out.println();
+    }
 
-    private static void printMaintenanceCost(int maintenanceId) {
+    private static void printDownTimeForFacility(int facilityId) {
+    	long downTime = facilityMaintenanceService.calcDownTimeForFacility(facilityId);
+    	System.out.println("Total Down time for Facility id : " + facilityId + " is ---- " + downTime + " minutes");
+    	System.out.println();
+	}
+
+	private static void printProblemRateForFacility(int facilityId) {
+    	double prblmRate = facilityMaintenanceService.calcProblemRateForFacility(facilityId);
+    	System.out.println("Problem rate(per year) for Facility id : " + facilityId + " is ---- " + prblmRate);
+    	System.out.println();
+	}
+
+	private static void printMaintenanceCost(int maintenanceId) {
         MaintenanceCost maintenanceCost = new MaintenanceCost();
         maintenanceCost.setMaintenanceId(maintenanceId);
         maintenanceCost.setMaterialCost(100);
@@ -108,13 +152,13 @@ public class FacilityClient {
         maintenance.setMaintenanceReqId(mainReqId);
         maintenance.setWorkerName("Alex");
         maintenance.setWorkerPhoneNum("630-800-0969");
-        maintenance.setStartDateTime(DateUtil.createDateTime(2016, 3, 21, 13, 00));
-        maintenance.setEndDateTime(DateUtil.createDateTime(2016, 3, 21, 14, 00));
+        maintenance.setStartDateTime(DateUtil.createDateTime(2015, 3, 21, 13, 00));
+        maintenance.setEndDateTime(DateUtil.createDateTime(2015, 3, 21, 14, 00));
         facilityMaintenanceService.scheduleMaintenance(maintenance);
         System.out.println();
     }
 
-    private static void createMaintenanceRequest(int mainReqId, int facilityId) {
+    private static void createMaintenanceRequest(int mainReqId, int facilityId, int year) {
         MaintenanceRequest maintenanceRequest = new MaintenanceRequest();
         maintenanceRequest.setMaintenanceReqId(mainReqId);
         maintenanceRequest.setFacilityId(facilityId);
@@ -122,7 +166,7 @@ public class FacilityClient {
         maintenanceRequest.setRequesterName("Syeda");
         maintenanceRequest.setRequesterEmail("snowreen@luc.edu");
         maintenanceRequest.setRequestSubject("Shower broken");
-        maintenanceRequest.setScheduledDateTime(DateUtil.createDateTime(2016, 3, 21, 12, 55));
+        maintenanceRequest.setRequestDate(DateUtil.createDateTime(year, 3, 21, 12, 55));
         facilityMaintenanceService.makeFacilityMaintRequest(maintenanceRequest);
         System.out.println();
     }
@@ -215,6 +259,24 @@ public class FacilityClient {
         System.out.println();
     }
 
+    private static void printAllFacilityMaintenanceReq() {
+        List<MaintenanceRequest> maintenanceReqList = facilityMaintenanceService.listMaintRequests();
+        System.out.println("Printing all maintenance request in database : ");
+        for (MaintenanceRequest maintenceReq : maintenanceReqList) {
+            System.out.println(maintenceReq.toString());
+        }
+        System.out.println();
+    }
+    
+    private static void printAllFacilityMaintenance() {
+        List<Maintenance> maintenanceList = facilityMaintenanceService.listMaintenance();
+        System.out.println("Printing all maintenance in database : ");
+        for (Maintenance maintence : maintenanceList) {
+            System.out.println(maintence.toString());
+        }
+        System.out.println();
+    }
+    
     private static void printFacilityInfo(int facilityId) {
         System.out.println(facilityService.getFacilityInformation(facilityId).toString());
         System.out.println();
