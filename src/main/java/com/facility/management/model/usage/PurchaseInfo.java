@@ -1,52 +1,30 @@
 package com.facility.management.model.usage;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class PurchaseInfo {
+import com.facility.management.model.facility.Facility;
 
-    private int purchaseId;
-    private int customerId;
-    private int facilityId;
-    private Date purchaseDate;
-    private double purchasePrice;
+public interface PurchaseInfo {
 
-    public int getPurchaseId() {
-        return purchaseId;
-    }
+	Integer getPurchaseId();
 
-    public void setPurchaseId(int purchaseId) {
-        this.purchaseId = purchaseId;
-    }
+	void setPurchaseId(Integer purchaseId);
 
-    public int getCustomerId() {
-        return customerId;
-    }
+	Facility getFacility();
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
+	void setFacility(Facility facility);
 
-    public int getFacilityId() {
-        return facilityId;
-    }
+	Owner getOwner();
 
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
+	void setOwner(Owner owner);
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
-    }
+	Date getPurchaseDate();
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
+	void setPurchaseDate(Date purchaseDate);
 
-    public double getPurchasePrice() {
-        return purchasePrice;
-    }
+	BigDecimal getPuchasePrice();
 
-    public void setPurchasePrice(double purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
+	void setPuchasePrice(BigDecimal puchasePrice);
+
 }

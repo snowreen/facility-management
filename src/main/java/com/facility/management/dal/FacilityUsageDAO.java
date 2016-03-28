@@ -1,7 +1,7 @@
-package com.facility.management.dal;
+/*package com.facility.management.dal;
 
-import com.facility.management.model.usage.Inspection;
-import com.facility.management.model.usage.LeaseInfo;
+import com.facility.management.model.usage.InspectionImpl;
+import com.facility.management.model.usage.LeaseInfoImpl;
 import com.facility.management.model.usage.LeaseStatus;
 import com.facility.management.util.DateUtil;
 
@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class FacilityUsageDAO {
 
-    public boolean assignFacilityToUse(LeaseInfo leaseInfo) {
+    public boolean assignFacilityToUse(LeaseInfoImpl leaseInfo) {
         Connection con = DBHelper.getConnection();
         PreparedStatement facilityUsageStatement = null;
 
@@ -150,7 +150,7 @@ public class FacilityUsageDAO {
         return false;
     }
 
-    public List<Inspection> getListOfInspections(int facilityId) {
+    public List<InspectionImpl> getListOfInspections(int facilityId) {
         Connection con = DBHelper.getConnection();
         Statement st = null;
 
@@ -163,10 +163,10 @@ public class FacilityUsageDAO {
             ResultSet inspectionRS = st.executeQuery(selectListOfInspectionsQuery);
             System.out.println("FacilityUsageDAO: *************** Query " + selectListOfInspectionsQuery);
 
-            List<Inspection> inspectionList = new ArrayList<Inspection>();
+            List<InspectionImpl> inspectionList = new ArrayList<InspectionImpl>();
 
             while (inspectionRS.next()) {
-                Inspection inspection = new Inspection();
+                InspectionImpl inspection = new InspectionImpl();
                 inspection.setInspectionId(inspectionRS.getInt("inspection_id"));
                 inspection.setInspectionDate(DateUtil.convertToUtilDate(inspectionRS.getDate("inspection_date")));
                 inspection.setInspectionResult(inspectionRS.getString("inspection_result"));
@@ -285,3 +285,4 @@ public class FacilityUsageDAO {
     }
 
 }
+*/

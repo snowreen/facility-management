@@ -1,70 +1,42 @@
 package com.facility.management.model.usage;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class LeaseInfo {
+import com.facility.management.model.facility.Facility;
 
-    private int leaseId;
-    private int facilityId;
-    private Date startDate;
-    private Date endDate;
-    private int customerId;
-    private double securityDeposit;
-    private Date terminationDate;
+public interface LeaseInfo {
 
-    public int getLeaseId() {
-        return leaseId;
-    }
+	Integer getLeaseId();
 
-    public void setLeaseId(int leaseId) {
-        this.leaseId = leaseId;
-    }
+	void setLeaseId(Integer leaseId);
 
-    public int getFacilityId() {
-        return facilityId;
-    }
+	Facility getFacility();
 
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
+	void setFacility(Facility facility);
 
-    public Date getStartDate() {
-        return startDate;
-    }
+	Tenant getTenant();
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+	void setTenant(Tenant tenant);
 
-    public Date getEndDate() {
-        return endDate;
-    }
+	Date getStartDate();
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+	void setStartDate(Date startDate);
 
-    public int getCustomerId() {
-        return customerId;
-    }
+	Date getEndDate();
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
+	void setEndDate(Date endDate);
 
-    public double getSecurityDeposit() {
-        return securityDeposit;
-    }
+	BigDecimal getSecurityDeposite();
 
-    public void setSecurityDeposit(double securityDeposit) {
-        this.securityDeposit = securityDeposit;
-    }
+	void setSecurityDeposite(BigDecimal securityDeposite);
 
-    public Date getTerminationDate() {
-        return terminationDate;
-    }
+	Date getTerminationDate();
 
-    public void setTerminationDate(Date terminationDate) {
-        this.terminationDate = terminationDate;
-    }
+	void setTerminationDate(Date terminationDate);
+
+	String getStatus();
+
+	void setStatus(String status);
+
 }

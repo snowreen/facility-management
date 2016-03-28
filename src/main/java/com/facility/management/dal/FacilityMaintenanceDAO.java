@@ -1,4 +1,4 @@
-package com.facility.management.dal;
+/*package com.facility.management.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.facility.management.model.maintenance.Maintenance;
-import com.facility.management.model.maintenance.MaintenanceCost;
-import com.facility.management.model.maintenance.MaintenanceRequest;
+import com.facility.management.model.maintenance.MaintenanceImpl;
+import com.facility.management.model.maintenance.MaintenanceCostImpl;
+import com.facility.management.model.maintenance.MaintenanceRequestImpl;
 import com.facility.management.util.DateUtil;
 
 public class FacilityMaintenanceDAO {
 
-    public boolean createMaintenanceReq(MaintenanceRequest maintenanceRequest) {
+    public boolean createMaintenanceReq(MaintenanceRequestImpl maintenanceRequest) {
         Connection con = DBHelper.getConnection();
         PreparedStatement mainReqSt = null;
 
@@ -61,7 +61,7 @@ public class FacilityMaintenanceDAO {
         return false;
     }
 
-    public boolean createMaintenanceSchedule(Maintenance maintenance) {
+    public boolean createMaintenanceSchedule(MaintenanceImpl maintenance) {
         Connection con = DBHelper.getConnection();
         PreparedStatement mainSt = null;
 
@@ -106,7 +106,7 @@ public class FacilityMaintenanceDAO {
         return false;
     }
 
-    public boolean createMaintenanceCost(MaintenanceCost maintenanceCost) {
+    public boolean createMaintenanceCost(MaintenanceCostImpl maintenanceCost) {
         Connection con = DBHelper.getConnection();
         PreparedStatement mainCostSt = null;
 
@@ -151,7 +151,7 @@ public class FacilityMaintenanceDAO {
     }
     
     
-    public List<MaintenanceRequest> getListOfFacilityMaintenanceReq() {
+    public List<MaintenanceRequestImpl> getListOfFacilityMaintenanceReq() {
         Connection con = DBHelper.getConnection();
         Statement st = null;
 
@@ -163,10 +163,10 @@ public class FacilityMaintenanceDAO {
             ResultSet facilityMainReqRS = st.executeQuery(selectListOfMaintenanceReqTypeQuery);
             System.out.println("FacilityMaintenanceDAO: *************** Query " + selectListOfMaintenanceReqTypeQuery);
 
-            List<MaintenanceRequest> facilityMainReqList = new ArrayList<MaintenanceRequest>();
+            List<MaintenanceRequestImpl> facilityMainReqList = new ArrayList<MaintenanceRequestImpl>();
 
             while (facilityMainReqRS.next()) {
-                MaintenanceRequest maintenceRequest = new MaintenanceRequest();
+                MaintenanceRequestImpl maintenceRequest = new MaintenanceRequestImpl();
                 maintenceRequest.setMaintenanceReqId(facilityMainReqRS.getInt("main_req_id"));
                 maintenceRequest.setRequestDate(facilityMainReqRS.getTimestamp("request_date"));
                 maintenceRequest.setFacilityId(facilityMainReqRS.getInt("facility_id"));
@@ -200,7 +200,7 @@ public class FacilityMaintenanceDAO {
 
     }
     
-    public List<Maintenance> getListOfMaintenance() {
+    public List<MaintenanceImpl> getListOfMaintenance() {
         Connection con = DBHelper.getConnection();
         Statement st = null;
 
@@ -212,10 +212,10 @@ public class FacilityMaintenanceDAO {
             ResultSet facilityMainListRS = st.executeQuery(selectListOfMaintenanceTypeQuery);
             System.out.println("FacilityMaintenanceDAO: *************** Query " + selectListOfMaintenanceTypeQuery);
 
-            List<Maintenance> facilityMaintenanceList = new ArrayList<Maintenance>();
+            List<MaintenanceImpl> facilityMaintenanceList = new ArrayList<MaintenanceImpl>();
 
             while (facilityMainListRS.next()) {
-            	Maintenance maintenance = new Maintenance();
+            	MaintenanceImpl maintenance = new MaintenanceImpl();
             	maintenance.setMaintenanceId(facilityMainListRS.getInt("maintenance_id"));
             	maintenance.setWorkerName(facilityMainListRS.getString("worker_name"));
             	maintenance.setWorkerPhoneNum(facilityMainListRS.getString("worker_phone"));
@@ -375,3 +375,4 @@ public class FacilityMaintenanceDAO {
     }
 
 }
+*/

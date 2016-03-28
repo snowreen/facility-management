@@ -1,9 +1,13 @@
 package com.facility.management.service.impl;
 
-import com.facility.management.dal.FacilityDAO;
+import com.facility.management.dal.FacilityHibernateDAO;
 import com.facility.management.model.facility.Building;
+import com.facility.management.model.facility.BuildingImpl;
 import com.facility.management.model.facility.BuildingUnit;
+import com.facility.management.model.facility.BuildingUnitImpl;
 import com.facility.management.model.facility.Facility;
+import com.facility.management.model.facility.FacilityDetail;
+import com.facility.management.model.facility.FacilityImpl;
 import com.facility.management.model.facility.FacilityType;
 import com.facility.management.service.FacilityService;
 
@@ -11,40 +15,44 @@ import java.util.List;
 
 public class FacilityServiceImpl implements FacilityService {
 
-    private FacilityDAO facilityDAO = new FacilityDAO();
+    private FacilityHibernateDAO facilityDAO;
 
-    @Override
-    public List<Facility> listFacilities() {
+    /*@Override
+    public List<FacilityImpl> listFacilities() {
         return facilityDAO.getListOfFacilities();
     }
 
     @Override
-    public Facility getFacilityInformation(int facilityId) {
+    public FacilityImpl getFacilityInformation(int facilityId) {
         return facilityDAO.getFacilityInfo(facilityId);
     }
 
     @Override
     public Long requestAvailableCapacity(int facilityId) {
         return facilityDAO.getAvailableCapacity(facilityId);
+    }*/
+
+    public void setFacilityDAO(FacilityHibernateDAO facilityDAO) {
+		this.facilityDAO = facilityDAO;
+	}
+
+	@Override
+    public void addNewFacility(Facility facility) {
+        facilityDAO.addFacility(facility);
     }
 
     @Override
-    public Boolean addNewFacility(Facility facility) {
-        return facilityDAO.createFacility(facility);
-    }
-
-    @Override
-    public void addFacilityDetail(Facility facility) {
-        if (facility.getFacilityType().equals(FacilityType.BUILDING.name())) {
-            facilityDAO.addBuildingDetails((Building) facility);
-        } else if (facility.getFacilityType().equals(FacilityType.UNIT.name())) {
-            facilityDAO.addBuildingUnitDetails((BuildingUnit) facility);
+    public void addFacilityDetail(FacilityDetail facilityDetail) {
+        if (facilityDetail instanceof Building) {
+            facilityDAO.addBuildingDetails((Building) facilityDetail);
+        } else if (facilityDetail instanceof BuildingUnit) {
+            facilityDAO.addBuildingUnitDetails((BuildingUnit) facilityDetail);
         }
     }
 
     @Override
-    public Boolean removeFacility(int facilityId) {
-        return facilityDAO.removeFacility(facilityId);
+    public void removeFacility(Facility facility) {
+        facilityDAO.deleteFacility(facility);
     }
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facility.management.model.facility">
+    <class name="FacilityAddressImpl" table="facility_address">
+        <id name="facilityAddressId" type="java.lang.Integer">
+            <column name="facility_address_id" />
+        </id>
+        <set name="facilities" table="facility" inverse="true" cascade="delete-orphan">
+	        <key>
+	            <column name="facility_address_id" not-null="true" />
+	        </key>
+	        <one-to-many class="com.facility.management.model.facility.FacilityImpl" />
+	    </set>
+        <property name="streetAddress" type="string">
+            <column name="street_address" length="200" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="45" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="45" />
+        </property>
+        <property name="zipcode" type="string">
+            <column name="zipcode" length="45" />
+        </property>
+    </class>
+    
+</hibernate-mapping>

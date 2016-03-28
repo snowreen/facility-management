@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aop-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aop-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aop-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aspects-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aspects-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-aspects-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-beans-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-beans-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-beans-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-build-src-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-support-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-support-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-context-support-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-core-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-core-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-core-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-expression-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-expression-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-expression-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-tomcat-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-tomcat-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-instrument-tomcat-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jdbc-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jdbc-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jdbc-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jms-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jms-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-jms-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-orm-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-orm-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-orm-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-oxm-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-oxm-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-oxm-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-struts-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-struts-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-struts-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-test-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-test-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-test-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-tx-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-tx-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-tx-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-web-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-web-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-web-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-portlet-3.2.3.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-portlet-3.2.3.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/spring-webmvc-portlet-3.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/hibernate-testing.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/FagunMain/Syeda/Documents/OOP/facility-management/libs/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="out/production/FacilityManagement"/>
 </classpath>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.usage.LeasePaymentImpl" table="lease_payment" catalog="FACILITY_MANAGEMENT">
+        <id name="paymentId" type="java.lang.Integer">
+            <column name="payment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="leaseInfo" class="com.facility.management.model.usage.LeaseInfoImpl" fetch="select" cascade="save-update, delete">
+            <column name="lease_id" />
+        </many-to-one>
+        <property name="amountDue" type="big_decimal">
+            <column name="amount_due" precision="8" />
+        </property>
+        <property name="paymentDate" type="date">
+            <column name="payment_date" length="10" />
+        </property>
+        <property name="amountPaid" type="big_decimal">
+            <column name="amount_paid" precision="8" />
+        </property>
+        <property name="dueDate" type="date">
+            <column name="due_date" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facility.management.model.facility">
+    <class name="BuildingUnitImpl" table="building_unit">
+        <id name="unitId" type="java.lang.Integer">
+            <column name="unit_id" />
+        </id>
+        <many-to-one name="building" class="BuildingImpl" cascade="all">
+            <column name="building_id" />
+        </many-to-one>
+        <many-to-one name="facility" class="FacilityImpl" cascade="all" unique="true" not-null="true">
+            <column name="facility_id" />
+        </many-to-one>
+        <property name="levelNum" type="java.lang.Integer">
+            <column name="level_num" />
+        </property>
+        <property name="numOfRooms" type="java.lang.Integer">
+            <column name="num_of_rooms" />
+        </property>
+    </class>
+</hibernate-mapping>

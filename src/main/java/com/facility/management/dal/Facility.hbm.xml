@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facility.management.model.facility">
+    <class name="FacilityImpl" table="facility">
+        <id name="facilityId" type="java.lang.Integer">
+            <column name="facility_id" />
+        </id>
+        <many-to-one name="facilityAddress" class="FacilityAddressImpl">
+            <column name="facility_address_id" />
+        </many-to-one>
+        <property name="facilityName" type="string">
+            <column name="facility_name" length="100" />
+        </property>
+        <property name="capacity" type="java.lang.Integer">
+            <column name="capacity" />
+        </property>
+        <property name="totalArea" type="big_decimal">
+            <column name="total_area" precision="10" />
+        </property>
+        <property name="facilityType" type="string">
+            <column name="facility_type" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

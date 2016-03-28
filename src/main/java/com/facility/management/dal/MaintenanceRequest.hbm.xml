@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.maintenance.MaintenanceRequestImpl" table="maintenance_request" catalog="FACILITY_MANAGEMENT">
+        <id name="mainReqId" type="java.lang.Integer">
+            <column name="main_req_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+            <column name="facility_id" />
+        </many-to-one>
+        <property name="requestDate" type="timestamp">
+            <column name="request_date" length="19" />
+        </property>
+        <property name="nameOfRequester" type="string">
+            <column name="name_of_requester" length="80" />
+        </property>
+        <property name="detail" type="string">
+            <column name="detail" length="400" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <property name="subject" type="string">
+            <column name="subject" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>

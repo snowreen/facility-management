@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.usage.InspectionImpl" table="inspection" catalog="FACILITY_MANAGEMENT">
+        <id name="inspectionId" type="java.lang.Integer">
+            <column name="inspection_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+            <column name="facility_id" />
+        </many-to-one>
+        <property name="inspectionDate" type="date">
+            <column name="inspection_date" length="10" />
+        </property>
+        <property name="inspectionResult" type="string">
+            <column name="inspection_result" length="400" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.usage.PurchaseInfoImpl" table="purchase_info" catalog="FACILITY_MANAGEMENT">
+        <id name="purchaseId" type="java.lang.Integer">
+            <column name="purchase_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+            <column name="facility_id" />
+        </many-to-one>
+        <many-to-one name="owner" class="com.facility.management.model.usage.OwnerImpl" cascade="save-update, delete">
+            <column name="owner_id" />
+        </many-to-one>
+        <property name="purchaseDate" type="date">
+            <column name="purchase_date" length="10" />
+        </property>
+        <property name="puchasePrice" type="big_decimal">
+            <column name="puchase_price" precision="8" />
+        </property>
+    </class>
+</hibernate-mapping>

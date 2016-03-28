@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.usage.LeaseInfoImpl" table="lease_info" catalog="FACILITY_MANAGEMENT">
+        <id name="leaseId" type="java.lang.Integer">
+            <column name="lease_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+            <column name="facility_id" />
+        </many-to-one>
+        <many-to-one name="tenant" class="com.facility.management.model.usage.TenantImpl" cascade="save-update, delete">
+            <column name="tenant_id" />
+        </many-to-one>
+        <property name="startDate" type="date">
+            <column name="start_date" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="end_date" length="10" />
+        </property>
+        <property name="securityDeposite" type="big_decimal">
+            <column name="security_deposite" precision="8" />
+        </property>
+        <property name="terminationDate" type="date">
+            <column name="termination_date" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

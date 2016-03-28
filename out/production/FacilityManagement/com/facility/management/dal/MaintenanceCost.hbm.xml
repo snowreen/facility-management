@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.maintenance.MaintenanceCostImpl" table="maintenance_cost" catalog="FACILITY_MANAGEMENT">
+        <id name="maintenanceId" type="java.lang.Integer">
+            <column name="maintenance_id" />
+            <generator class="foreign">
+                <param name="property">maintenance</param>
+            </generator>
+        </id>
+        <one-to-one name="maintenance" class="com.facility.management.model.maintenance.MaintenanceImpl" constrained="true" cascade="save-update, delete"></one-to-one>
+        <property name="materialCost" type="big_decimal">
+            <column name="material_cost" precision="8" />
+        </property>
+        <property name="laborCost" type="big_decimal">
+            <column name="labor_cost" precision="8" />
+        </property>
+        <property name="totalCost" type="big_decimal">
+            <column name="total_cost" precision="8" />
+        </property>
+        <property name="isPaid" type="string">
+            <column name="is_paid" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

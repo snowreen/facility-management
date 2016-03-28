@@ -1,4 +1,4 @@
-package com.facility.management.dal;
+/*package com.facility.management.dal;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -55,3 +55,4 @@ public class DBHelper {
 		return connection;
 	}
 }
+*/

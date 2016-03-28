@@ -1,57 +1,25 @@
 package com.facility.management.model.facility;
 
-public class BuildingUnit extends Facility {
+public interface BuildingUnit extends FacilityDetail {
 
-    private int unitId;
-    private int buildingId;
-    private int levelNum;
-    private int numOfRooms;
+	Integer getUnitId();
 
-    public int getUnitId() {
-        return unitId;
-    }
+	void setUnitId(Integer unitId);
 
-    public void setUnitId(int unitId) {
-        this.unitId = unitId;
-    }
+	Building getBuilding();
 
-    public int getBuildingId() {
-        return buildingId;
-    }
+	void setBuilding(Building building);
 
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
+	Facility getFacility();
 
-    public int getLevelNum() {
-        return levelNum;
-    }
+	void setFacility(Facility facility);
 
-    public void setLevelNum(int levelNum) {
-        this.levelNum = levelNum;
-    }
+	Integer getLevelNum();
 
-    public int getNumOfRooms() {
-        return numOfRooms;
-    }
+	void setLevelNum(Integer levelNum);
 
-    public void setNumOfRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
-    }
+	Integer getNumOfRooms();
 
-    @Override
-    public String toString() {
-        return "BuildingUnit{" +
-                "facilityId=" + this.getFacilityId() +
-                ", facilityName='" + this.getFacilityName() + '\'' +
-                ", capacity=" + this.getCapacity() +
-                ", totalArea=" + this.getTotalArea() +
-                ", facilityType='" + this.getFacilityType() + '\'' +
-                ", facilityAddress=" + this.getFacilityAddress() +
-                ", unitId=" + unitId +
-                ", buildingId=" + buildingId +
-                ", levelNum=" + levelNum +
-                ", numOfRooms=" + numOfRooms +
-                '}';
-    }
+	void setNumOfRooms(Integer numOfRooms);
+
 }

@@ -2,52 +2,24 @@ package com.facility.management.model.usage;
 
 import java.util.Date;
 
-public class Inspection {
+import com.facility.management.model.facility.Facility;
 
-    private int inspectionId;
-    private String inspectionResult;
-    private Date inspectionDate;
-    private int facilityId;
+public interface Inspection {
 
-    public int getInspectionId() {
-        return inspectionId;
-    }
+	Integer getInspectionId();
 
-    public void setInspectionId(int inspectionId) {
-        this.inspectionId = inspectionId;
-    }
+	void setInspectionId(Integer inspectionId);
 
-    public String getInspectionResult() {
-        return inspectionResult;
-    }
+	Facility getFacility();
 
-    public void setInspectionResult(String inspectionResult) {
-        this.inspectionResult = inspectionResult;
-    }
+	void setFacility(Facility facility);
 
-    public Date getInspectionDate() {
-        return inspectionDate;
-    }
+	Date getInspectionDate();
 
-    public void setInspectionDate(Date inspectionDate) {
-        this.inspectionDate = inspectionDate;
-    }
+	void setInspectionDate(Date inspectionDate);
 
-    public int getFacilityId() {
-        return facilityId;
-    }
+	String getInspectionResult();
 
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
+	void setInspectionResult(String inspectionResult);
 
-    @Override
-    public String toString() {
-        return "Inspection {" +
-                "inspectionId=" + inspectionId +
-                ", inspectionResult='" + inspectionResult + '\'' +
-                ", inspectionDate=" + inspectionDate +
-                ", facilityId=" + facilityId +
-                '}';
-    }
 }

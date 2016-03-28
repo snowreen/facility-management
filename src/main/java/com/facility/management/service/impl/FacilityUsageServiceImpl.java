@@ -1,8 +1,8 @@
-package com.facility.management.service.impl;
+/*package com.facility.management.service.impl;
 
 import com.facility.management.dal.FacilityUsageDAO;
-import com.facility.management.model.usage.Inspection;
-import com.facility.management.model.usage.LeaseInfo;
+import com.facility.management.model.usage.InspectionImpl;
+import com.facility.management.model.usage.LeaseInfoImpl;
 import com.facility.management.service.FacilityUsageService;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ public class FacilityUsageServiceImpl implements FacilityUsageService {
     }
 
     @Override
-    public Boolean assignFacilityToUse(LeaseInfo leaseInfo) {
+    public Boolean assignFacilityToUse(LeaseInfoImpl leaseInfo) {
         return facilityUsageDAO.assignFacilityToUse(leaseInfo);
     }
 
@@ -29,7 +29,7 @@ public class FacilityUsageServiceImpl implements FacilityUsageService {
     }
 
     @Override
-    public List<Inspection> listInspections(int facilityId) {
+    public List<InspectionImpl> listInspections(int facilityId) {
         return facilityUsageDAO.getListOfInspections(facilityId);
     }
 
@@ -44,3 +44,4 @@ public class FacilityUsageServiceImpl implements FacilityUsageService {
     }
 
 }
+*/

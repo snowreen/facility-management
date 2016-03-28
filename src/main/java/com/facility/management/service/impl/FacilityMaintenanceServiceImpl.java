@@ -1,11 +1,11 @@
-package com.facility.management.service.impl;
+/*package com.facility.management.service.impl;
 
 import java.util.List;
 
 import com.facility.management.dal.FacilityMaintenanceDAO;
-import com.facility.management.model.maintenance.Maintenance;
-import com.facility.management.model.maintenance.MaintenanceCost;
-import com.facility.management.model.maintenance.MaintenanceRequest;
+import com.facility.management.model.maintenance.MaintenanceImpl;
+import com.facility.management.model.maintenance.MaintenanceCostImpl;
+import com.facility.management.model.maintenance.MaintenanceRequestImpl;
 import com.facility.management.service.FacilityMaintenanceService;
 
 public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceService {
@@ -13,17 +13,17 @@ public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceServic
     private FacilityMaintenanceDAO facilityMaintenanceDAO = new FacilityMaintenanceDAO();
 
     @Override
-    public Boolean makeFacilityMaintRequest(MaintenanceRequest maintenanceRequest) {
+    public Boolean makeFacilityMaintRequest(MaintenanceRequestImpl maintenanceRequest) {
         return facilityMaintenanceDAO.createMaintenanceReq(maintenanceRequest);
     }
 
     @Override
-    public Boolean scheduleMaintenance(Maintenance maintenance) {
+    public Boolean scheduleMaintenance(MaintenanceImpl maintenance) {
         return facilityMaintenanceDAO.createMaintenanceSchedule(maintenance);
     }
 
     @Override
-    public Double calcMaintenanceCostForFacility(MaintenanceCost maintenanceCost) {
+    public Double calcMaintenanceCostForFacility(MaintenanceCostImpl maintenanceCost) {
         boolean isMaintenanceCostInserted = facilityMaintenanceDAO.createMaintenanceCost(maintenanceCost);
         if (isMaintenanceCostInserted) {
             return maintenanceCost.getTotalCost();
@@ -43,12 +43,12 @@ public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceServic
     }
 
     @Override
-    public List<MaintenanceRequest> listMaintRequests() {
+    public List<MaintenanceRequestImpl> listMaintRequests() {
         return facilityMaintenanceDAO.getListOfFacilityMaintenanceReq();
     }
 
     @Override
-    public List<Maintenance> listMaintenance() {
+    public List<MaintenanceImpl> listMaintenance() {
         return facilityMaintenanceDAO.getListOfMaintenance();
     }
 
@@ -58,3 +58,4 @@ public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceServic
     }
 
 }
+*/

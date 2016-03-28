@@ -1,50 +1,31 @@
 package com.facility.management.model.maintenance;
 
-public class MaintenanceCost {
+import java.math.BigDecimal;
 
-    private int maintenanceId;
-    private double materialCost;
-    private double laborCost;
-    private double totalCost;
-    private boolean isPaid;
+public interface MaintenanceCost {
 
-    public int getMaintenanceId() {
-        return maintenanceId;
-    }
+	Integer getMaintenanceId();
 
-    public void setMaintenanceId(int maintenanceId) {
-        this.maintenanceId = maintenanceId;
-    }
+	void setMaintenanceId(Integer maintenanceId);
 
-    public double getMaterialCost() {
-        return materialCost;
-    }
+	Maintenance getMaintenance();
 
-    public void setMaterialCost(double materialCost) {
-        this.materialCost = materialCost;
-    }
+	void setMaintenance(Maintenance maintenance);
 
-    public double getLaborCost() {
-        return laborCost;
-    }
+	BigDecimal getMaterialCost();
 
-    public void setLaborCost(double laborCost) {
-        this.laborCost = laborCost;
-    }
+	void setMaterialCost(BigDecimal materialCost);
 
-    public double getTotalCost() {
-        return totalCost;
-    }
+	BigDecimal getLaborCost();
 
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
+	void setLaborCost(BigDecimal laborCost);
 
-    public boolean isPaid() {
-        return isPaid;
-    }
+	BigDecimal getTotalCost();
 
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
+	void setTotalCost(BigDecimal totalCost);
+
+	String getIsPaid();
+
+	void setIsPaid(String isPaid);
+
 }

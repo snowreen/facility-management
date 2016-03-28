@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 11:20:33 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.facility.management.model.maintenance.MaintenanceImpl" table="maintenance" catalog="FACILITY_MANAGEMENT">
+        <id name="maintenanceId" type="java.lang.Integer">
+            <column name="maintenance_id" />
+            <generator class="identity" />
+        </id>
+        <one-to-one name="maintenanceRequest" class="com.facility.management.model.maintenance.MaintenanceRequestImpl" cascade="save-update, delete"></one-to-one>
+        <property name="workerName" type="string">
+            <column name="worker_name" length="50" />
+        </property>
+        <property name="workerPhone" type="string">
+            <column name="worker_phone" length="45" />
+        </property>
+        <property name="startDateTime" type="timestamp">
+            <column name="start_date_time" length="19" />
+        </property>
+        <property name="endDateTime" type="timestamp">
+            <column name="end_date_time" length="19" />
+        </property>
+        <one-to-one name="maintenanceCost" class="com.facility.management.model.maintenance.MaintenanceCostImpl" cascade="save-update, delete"></one-to-one>
+    </class>
+</hibernate-mapping>

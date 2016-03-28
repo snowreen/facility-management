@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.facility.management.model.usage.OwnerImpl" table="owner" catalog="FACILITY_MANAGEMENT">
+        <id name="ownerId" type="java.lang.Integer">
+            <column name="owner_id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" />
+        </property>
+        <property name="ssn" type="string">
+            <column name="SSN" length="12" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="25" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

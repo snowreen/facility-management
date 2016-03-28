@@ -1,71 +1,31 @@
 package com.facility.management.model.facility;
 
-public class Facility {
+import java.math.BigDecimal;
 
-    private int facilityId;
-    private String facilityName;
-    private long capacity;
-    private double totalArea;
-    private String facilityType;
-    private FacilityAddress facilityAddress;
+public interface Facility {
 
-    public int getFacilityId() {
-        return facilityId;
-    }
+	Integer getFacilityId();
 
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
+	void setFacilityId(Integer facilityId);
 
-    public String getFacilityName() {
-        return facilityName;
-    }
+	FacilityAddress getFacilityAddress();
 
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
-    }
+	void setFacilityAddress(FacilityAddress facilityAddress);
 
-    public long getCapacity() {
-        return capacity;
-    }
+	String getFacilityName();
 
-    public void setCapacity(long capacity) {
-        this.capacity = capacity;
-    }
+	void setFacilityName(String facilityName);
 
-    public double getTotalArea() {
-        return totalArea;
-    }
+	Integer getCapacity();
 
-    public void setTotalArea(double totalArea) {
-        this.totalArea = totalArea;
-    }
+	void setCapacity(Integer capacity);
 
-    public String getFacilityType() {
-        return facilityType;
-    }
+	BigDecimal getTotalArea();
 
-    public void setFacilityType(String facilityType) {
-        this.facilityType = facilityType;
-    }
+	void setTotalArea(BigDecimal totalArea);
 
-    public FacilityAddress getFacilityAddress() {
-        return facilityAddress;
-    }
+	String getFacilityType();
 
-    public void setFacilityAddress(FacilityAddress facilityAddress) {
-        this.facilityAddress = facilityAddress;
-    }
+	void setFacilityType(String facilityType);
 
-    @Override
-    public String toString() {
-        return "Facility {" +
-                "facilityId=" + facilityId +
-                ", facilityName='" + facilityName + '\'' +
-                ", capacity=" + capacity +
-                ", totalArea=" + totalArea +
-                ", facilityType='" + facilityType + '\'' +
-                ", facilityAddress=" + facilityAddress +
-                '}';
-    }
 }

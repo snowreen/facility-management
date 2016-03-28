@@ -1,61 +1,32 @@
 package com.facility.management.model.usage;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class LeasePayment {
+public interface LeasePayment {
 
-    private int paymentId;
-    private int leaseId;
-    private Date dueDate;
-    private Date paymentDate;
-    private double dueAmount;
-    private double paymentAmount;
+	Integer getPaymentId();
 
-    public int getPaymentId() {
-        return paymentId;
-    }
+	void setPaymentId(Integer paymentId);
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
-    }
+	LeaseInfo getLeaseInfo();
 
-    public int getLeaseId() {
-        return leaseId;
-    }
+	void setLeaseInfo(LeaseInfo leaseInfo);
 
-    public void setLeaseId(int leaseId) {
-        this.leaseId = leaseId;
-    }
+	BigDecimal getAmountDue();
 
-    public Date getDueDate() {
-        return dueDate;
-    }
+	void setAmountDue(BigDecimal amountDue);
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
+	Date getPaymentDate();
 
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
+	void setPaymentDate(Date paymentDate);
 
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
+	BigDecimal getAmountPaid();
 
-    public double getDueAmount() {
-        return dueAmount;
-    }
+	void setAmountPaid(BigDecimal amountPaid);
 
-    public void setDueAmount(double dueAmount) {
-        this.dueAmount = dueAmount;
-    }
+	Date getDueDate();
 
-    public double getPaymentAmount() {
-        return paymentAmount;
-    }
+	void setDueDate(Date dueDate);
 
-    public void setPaymentAmount(double paymentAmount) {
-        this.paymentAmount = paymentAmount;
-    }
 }

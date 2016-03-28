@@ -2,79 +2,36 @@ package com.facility.management.model.maintenance;
 
 import java.util.Date;
 
-public class MaintenanceRequest {
+import com.facility.management.model.facility.Facility;
 
-    private int maintenanceReqId;
-    private int facilityId;
-    private String requesterName;
-    private String requesterEmail;
-    private String requestSubject;
-    private String requestDetail;
-    private Date requestDate;
+public interface MaintenanceRequest {
 
-    public int getMaintenanceReqId() {
-        return maintenanceReqId;
-    }
+	Integer getMainReqId();
 
-    public void setMaintenanceReqId(int maintenanceReqId) {
-        this.maintenanceReqId = maintenanceReqId;
-    }
+	void setMainReqId(Integer mainReqId);
 
-    public int getFacilityId() {
-        return facilityId;
-    }
+	Facility getFacility();
 
-    public void setFacilityId(int facilityId) {
-        this.facilityId = facilityId;
-    }
+	void setFacility(Facility facility);
 
-    public String getRequesterName() {
-        return requesterName;
-    }
+	Date getRequestDate();
 
-    public void setRequesterName(String requesterName) {
-        this.requesterName = requesterName;
-    }
+	void setRequestDate(Date requestDate);
 
-    public String getRequesterEmail() {
-        return requesterEmail;
-    }
+	String getNameOfRequester();
 
-    public void setRequesterEmail(String requesterEmail) {
-        this.requesterEmail = requesterEmail;
-    }
+	void setNameOfRequester(String nameOfRequester);
 
-    public String getRequestSubject() {
-        return requestSubject;
-    }
+	String getDetail();
 
-    public void setRequestSubject(String requestSubject) {
-        this.requestSubject = requestSubject;
-    }
+	void setDetail(String detail);
 
-    public String getRequestDetail() {
-        return requestDetail;
-    }
+	String getEmail();
 
-    public void setRequestDetail(String requestDetail) {
-        this.requestDetail = requestDetail;
-    }
+	void setEmail(String email);
 
-    public Date getRequestDate() {
-        return requestDate;
-    }
+	String getSubject();
 
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
-    }
+	void setSubject(String subject);
 
-	@Override
-	public String toString() {
-		return "MaintenanceRequest [maintenanceReqId=" + maintenanceReqId
-				+ ", facilityId=" + facilityId + ", requesterName="
-				+ requesterName + ", requesterEmail=" + requesterEmail
-				+ ", requestSubject=" + requestSubject + ", requestDetail="
-				+ requestDetail + ", requestDate=" + requestDate
-				+ "]";
-	}
 }

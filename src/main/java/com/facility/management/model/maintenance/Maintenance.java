@@ -2,69 +2,34 @@ package com.facility.management.model.maintenance;
 
 import java.util.Date;
 
-public class Maintenance {
+public interface Maintenance {
 
-    private int maintenanceId;
-    private int maintenanceReqId;
-    private String workerName;
-    private String workerPhoneNum;
-    private Date startDateTime;
-    private Date endDateTime;
+	Integer getMaintenanceId();
 
-    public int getMaintenanceId() {
-        return maintenanceId;
-    }
+	void setMaintenanceId(Integer maintenanceId);
 
-    public void setMaintenanceId(int maintenanceId) {
-        this.maintenanceId = maintenanceId;
-    }
+	MaintenanceRequest getMaintenanceRequest();
 
-    public int getMaintenanceReqId() {
-        return maintenanceReqId;
-    }
+	void setMaintenanceRequest(MaintenanceRequest maintenanceRequest);
 
-    public void setMaintenanceReqId(int maintenanceReqId) {
-        this.maintenanceReqId = maintenanceReqId;
-    }
+	String getWorkerName();
 
-    public String getWorkerName() {
-        return workerName;
-    }
+	void setWorkerName(String workerName);
 
-    public void setWorkerName(String workerName) {
-        this.workerName = workerName;
-    }
+	String getWorkerPhone();
 
-    public String getWorkerPhoneNum() {
-        return workerPhoneNum;
-    }
+	void setWorkerPhone(String workerPhone);
 
-    public void setWorkerPhoneNum(String workerPhoneNum) {
-        this.workerPhoneNum = workerPhoneNum;
-    }
+	Date getStartDateTime();
 
-    public Date getStartDateTime() {
-        return startDateTime;
-    }
+	void setStartDateTime(Date startDateTime);
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
-    }
+	Date getEndDateTime();
 
-    public Date getEndDateTime() {
-        return endDateTime;
-    }
+	void setEndDateTime(Date endDateTime);
 
-    public void setEndDateTime(Date endDateTime) {
-        this.endDateTime = endDateTime;
-    }
+	MaintenanceCost getMaintenanceCost();
 
-	@Override
-	public String toString() {
-		return "Maintenance [maintenanceId=" + maintenanceId
-				+ ", maintenanceReqId=" + maintenanceReqId + ", workerName="
-				+ workerName + ", workerPhoneNum=" + workerPhoneNum
-				+ ", startDateTime=" + startDateTime + ", endDateTime="
-				+ endDateTime + "]";
-	}
+	void setMaintenanceCost(MaintenanceCost maintenanceCost);
+
 }

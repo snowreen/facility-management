@@ -1,61 +1,31 @@
 package com.facility.management.model.facility;
 
-public class FacilityAddress {
+import java.util.List;
 
-    private int addressId;
-    private String streetAddress;
-    private String city;
-    private String state;
-    private String zipCode;
+public interface FacilityAddress {
 
-    public int getAddressId() {
-        return addressId;
-    }
+	Integer getFacilityAddressId();
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
+	void setFacilityAddressId(Integer facilityAddressId);
 
-    public String getStreetAddress() {
-        return streetAddress;
-    }
+	String getStreetAddress();
 
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
-    }
+	void setStreetAddress(String streetAddress);
 
-    public String getCity() {
-        return city;
-    }
+	String getCity();
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	void setCity(String city);
 
-    public String getState() {
-        return state;
-    }
+	String getState();
 
-    public void setState(String state) {
-        this.state = state;
-    }
+	void setState(String state);
 
-    public String getZipCode() {
-        return zipCode;
-    }
+	String getZipcode();
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+	void setZipcode(String zipcode);
+	
+	List<Facility> getFacilities();
+	
+	void setFacilities(List<Facility> facilities);
 
-    @Override
-    public String toString() {
-        return "FacilityAddress{" +
-                "addressId=" + addressId +
-                ", streetAddress='" + streetAddress + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
-    }
 }

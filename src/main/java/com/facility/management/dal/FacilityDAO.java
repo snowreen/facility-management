@@ -1,4 +1,4 @@
-package com.facility.management.dal;
+/*package com.facility.management.dal;
 
 import com.facility.management.model.facility.*;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FacilityDAO {
 
-    public boolean createFacility(Facility facility) {
+    public boolean createFacility(FacilityImpl facility) {
         Connection con = DBHelper.getConnection();
         PreparedStatement facilityStatement = null;
         PreparedStatement facilityAddressStatement = null;
@@ -16,7 +16,7 @@ public class FacilityDAO {
         try {
             //Insert the Facility address object
 
-            FacilityAddress facilityAddress = facility.getFacilityAddress();
+            FacilityAddressImpl facilityAddress = facility.getFacilityAddress();
             Statement st = con.createStatement();
             String findExistingAddress = "select * from facility_address where facility_address_id = '" + facilityAddress.getAddressId() + "'";
             ResultSet existingAddress = st.executeQuery(findExistingAddress);
@@ -77,7 +77,7 @@ public class FacilityDAO {
     }
 
 
-    public boolean addBuildingDetails(Building building) {
+    public boolean addBuildingDetails(BuildingImpl building) {
         Connection con = DBHelper.getConnection();
         PreparedStatement buildingStatement = null;
 
@@ -123,7 +123,7 @@ public class FacilityDAO {
         return false;
     }
 
-    public boolean addBuildingUnitDetails(BuildingUnit buildingUnit) {
+    public boolean addBuildingUnitDetails(BuildingUnitImpl buildingUnit) {
         Connection con = DBHelper.getConnection();
         PreparedStatement buildingUnitStatement = null;
 
@@ -170,7 +170,7 @@ public class FacilityDAO {
     }
 
 
-    public Facility getFacilityInfo(int facilityId) {
+    public FacilityImpl getFacilityInfo(int facilityId) {
         Connection con = DBHelper.getConnection();
         Statement st = null;
 
@@ -222,7 +222,7 @@ public class FacilityDAO {
 
     }
 
-    private Building getBuildingInfo(int facilityId) {
+    private BuildingImpl getBuildingInfo(int facilityId) {
         Connection con = DBHelper.getConnection();
         Statement st = null;
         try {
@@ -235,7 +235,7 @@ public class FacilityDAO {
             ResultSet buildingRS = st.executeQuery(selectBuildingQuery);
             System.out.println("FacilityDAO: *************** Query " + selectBuildingQuery);
 
-            Building building = new Building();
+            BuildingImpl building = new BuildingImpl();
             if (buildingRS.next()) {
                 building.setFacilityId(facilityId);
                 building.setFacilityName(buildingRS.getString("facility_name"));
@@ -272,7 +272,7 @@ public class FacilityDAO {
         return null;
     }
 
-    private BuildingUnit getBuildingUnitInfo(int facilityId) {
+    private BuildingUnitImpl getBuildingUnitInfo(int facilityId) {
         Connection con = DBHelper.getConnection();
         Statement st = null;
         try {
@@ -285,7 +285,7 @@ public class FacilityDAO {
             ResultSet buildingUnitRS = st.executeQuery(selectBuildingUnitQuery);
             System.out.println("FacilityDAO: *************** Query " + selectBuildingUnitQuery);
 
-            BuildingUnit buildingUnit = new BuildingUnit();
+            BuildingUnitImpl buildingUnit = new BuildingUnitImpl();
             if (buildingUnitRS.next()) {
                 buildingUnit.setFacilityId(facilityId);
                 buildingUnit.setFacilityName(buildingUnitRS.getString("facility_name"));
@@ -325,7 +325,7 @@ public class FacilityDAO {
 
     }
 
-    public List<Facility> getListOfFacilities() {
+    public List<FacilityImpl> getListOfFacilities() {
         Connection con = DBHelper.getConnection();
         Statement st = null;
 
@@ -337,10 +337,10 @@ public class FacilityDAO {
             ResultSet facilityRS = st.executeQuery(selectListOfFacilityTypeQuery);
             System.out.println("FacilityDAO: *************** Query " + selectListOfFacilityTypeQuery);
 
-            List<Facility> facilityList = new ArrayList<Facility>();
+            List<FacilityImpl> facilityList = new ArrayList<FacilityImpl>();
 
             while (facilityRS.next()) {
-                Facility facility = new Facility();
+                FacilityImpl facility = new FacilityImpl();
                 facility.setFacilityName(facilityRS.getString("facility_name"));
                 facility.setFacilityId(facilityRS.getInt("facility_id"));
                 facility.setFacilityType(facilityRS.getString("facility_type"));
@@ -455,3 +455,4 @@ public class FacilityDAO {
     }
 }
 
+*/

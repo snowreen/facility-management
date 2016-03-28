@@ -1,68 +1,25 @@
 package com.facility.management.model.facility;
 
-import java.util.List;
+public interface Building extends FacilityDetail {
 
-public class Building extends Facility {
+	Integer getBuildingId();
 
-    private int buildingId;
-    private int numOfFloors;
-    private int noOfElevators;
-    private int noOfEntrance;
-    private List<BuildingUnit> units;
+	void setBuildingId(Integer buildingId);
 
-    public int getBuildingId() {
-        return buildingId;
-    }
+	Facility getFacility();
 
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
+	void setFacility(Facility facility);
 
-    public int getNumOfFloors() {
-        return numOfFloors;
-    }
+	Integer getNumOfElevators();
 
-    public void setNumOfFloors(int numOfFloors) {
-        this.numOfFloors = numOfFloors;
-    }
+	void setNumOfElevators(Integer numOfElevators);
 
-    public int getNoOfElevators() {
-        return noOfElevators;
-    }
+	Integer getNumOfFloors();
 
-    public void setNoOfElevators(int noOfElevators) {
-        this.noOfElevators = noOfElevators;
-    }
+	void setNumOfFloors(Integer numOfFloors);
 
-    public int getNoOfEntrance() {
-        return noOfEntrance;
-    }
+	Integer getNumOfEntrance();
 
-    public void setNoOfEntrance(int noOfEntrance) {
-        this.noOfEntrance = noOfEntrance;
-    }
+	void setNumOfEntrance(Integer numOfEntrance);
 
-    public List<BuildingUnit> getUnits() {
-        return units;
-    }
-
-    public void setUnits(List<BuildingUnit> units) {
-        this.units = units;
-    }
-
-    @Override
-    public String toString() {
-        return "Building{" +
-                "facilityId=" + this.getFacilityId() +
-                ", facilityName='" + this.getFacilityName() + '\'' +
-                ", capacity=" + this.getCapacity() +
-                ", totalArea=" + this.getTotalArea() +
-                ", facilityType='" + this.getFacilityType() + '\'' +
-                ", facilityAddress=" + this.getFacilityAddress() +
-                ", buildingId=" + buildingId +
-                ", numOfFloors=" + numOfFloors +
-                ", noOfElevators=" + noOfElevators +
-                ", noOfEntrance=" + noOfEntrance +
-                '}';
-    }
 }
