@@ -3,10 +3,9 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.usage.TenantImpl" table="tenant" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.usage.TenantImpl" table="tenant">
         <id name="tenantId" type="java.lang.Integer">
             <column name="tenant_id" />
-            <generator class="identity" />
         </id>
         <property name="firstName" type="string">
             <column name="first_name" length="50" />

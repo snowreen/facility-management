@@ -8,7 +8,7 @@ public class HibernateMYSQLHelper {
 
 	static {
 		try {
-			// Create the SessionFactory from hibernate.cfg.xml
+			// Creating the SessionFactory from hibernate.cfg.xml
 			sessionFactory = new Configuration().configure().buildSessionFactory();
 			System.out.println("*************** Session Factory instantiated ..................");
 		} catch (Throwable ex) {

@@ -1,6 +1,6 @@
 package com.facility.management.model.facility;
 
-import java.util.List;
+import java.util.Set;
 
 public class FacilityAddressImpl implements FacilityAddress {
 	
@@ -9,7 +9,7 @@ public class FacilityAddressImpl implements FacilityAddress {
 	private String city;
 	private String state;
 	private String zipcode;
-	private List<Facility> facilities;
+	private Set<Facility> facilities;
 
 	public FacilityAddressImpl() {
 	}
@@ -73,13 +73,21 @@ public class FacilityAddressImpl implements FacilityAddress {
 	}
 
 	@Override
-	public List<Facility> getFacilities() {
+	public Set<Facility> getFacilities() {
 		return facilities;
 	}
 	
 	@Override
-	public void setFacilities(List<Facility> facilities) {
+	public void setFacilities(Set<Facility> facilities) {
 		this.facilities = facilities;
 	}
+
+	@Override
+	public String toString() {
+		return "FacilityAddressImpl [facilityAddressId=" + facilityAddressId
+				+ ", streetAddress=" + streetAddress + ", city=" + city
+				+ ", state=" + state + ", zipcode=" + zipcode + "]";
+	}
+	
 
 }

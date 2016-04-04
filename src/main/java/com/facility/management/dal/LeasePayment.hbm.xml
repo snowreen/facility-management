@@ -3,12 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.usage.LeasePaymentImpl" table="lease_payment" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.usage.LeasePaymentImpl" table="lease_payment">
         <id name="paymentId" type="java.lang.Integer">
             <column name="payment_id" />
-            <generator class="identity" />
         </id>
-        <many-to-one name="leaseInfo" class="com.facility.management.model.usage.LeaseInfoImpl" fetch="select" cascade="save-update, delete">
+        <many-to-one name="leaseInfo" class="com.facility.management.model.usage.LeaseInfoImpl" lazy="false" cascade="save-update, delete">
             <column name="lease_id" />
         </many-to-one>
         <property name="amountDue" type="big_decimal">

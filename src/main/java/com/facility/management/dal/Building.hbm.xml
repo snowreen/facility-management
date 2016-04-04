@@ -7,7 +7,7 @@
         <id name="buildingId" type="java.lang.Integer">
             <column name="building_id" />
         </id>
-        <many-to-one name="facility" class="FacilityImpl" cascade="all" unique="true" not-null="true">
+        <many-to-one name="facility" class="FacilityImpl" cascade="all" unique="true" not-null="true" lazy="false">
             <column name="facility_id" />
         </many-to-one>
         <property name="numOfElevators" type="java.lang.Integer">

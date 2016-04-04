@@ -1,61 +1,59 @@
-/*package com.facility.management.service.impl;
+package com.facility.management.service.impl;
 
 import java.util.List;
 
-import com.facility.management.dal.FacilityMaintenanceDAO;
-import com.facility.management.model.maintenance.MaintenanceImpl;
-import com.facility.management.model.maintenance.MaintenanceCostImpl;
-import com.facility.management.model.maintenance.MaintenanceRequestImpl;
+import com.facility.management.dal.FacilityMaintenanceHibernateDAO;
+import com.facility.management.model.maintenance.Maintenance;
+import com.facility.management.model.maintenance.MaintenanceCost;
+import com.facility.management.model.maintenance.MaintenanceRequest;
 import com.facility.management.service.FacilityMaintenanceService;
 
 public class FacilityMaintenanceServiceImpl implements FacilityMaintenanceService {
 
-    private FacilityMaintenanceDAO facilityMaintenanceDAO = new FacilityMaintenanceDAO();
+    private FacilityMaintenanceHibernateDAO facilityMaintenanceDAO;
 
-    @Override
-    public Boolean makeFacilityMaintRequest(MaintenanceRequestImpl maintenanceRequest) {
-        return facilityMaintenanceDAO.createMaintenanceReq(maintenanceRequest);
-    }
+	public void setFacilityMaintenanceDAO(
+			FacilityMaintenanceHibernateDAO facilityMaintenanceDAO) {
+		this.facilityMaintenanceDAO = facilityMaintenanceDAO;
+	}
 
-    @Override
-    public Boolean scheduleMaintenance(MaintenanceImpl maintenance) {
-        return facilityMaintenanceDAO.createMaintenanceSchedule(maintenance);
-    }
+	@Override
+	public Boolean makeFacilityMaintRequest(MaintenanceRequest maintenanceRequest) {
+		return facilityMaintenanceDAO.createMaintenanceReq(maintenanceRequest);
+	}
 
-    @Override
-    public Double calcMaintenanceCostForFacility(MaintenanceCostImpl maintenanceCost) {
-        boolean isMaintenanceCostInserted = facilityMaintenanceDAO.createMaintenanceCost(maintenanceCost);
-        if (isMaintenanceCostInserted) {
-            return maintenanceCost.getTotalCost();
-        }
-        System.out.println("Maintenance Cost calculation failed !!!");
-        return null;
-    }
+	@Override
+	public Boolean scheduleMaintenance(Maintenance maintenance) {
+		return facilityMaintenanceDAO.createMaintenanceSchedule(maintenance);
+	}
+	
+	@Override
+	public MaintenanceCost retrieveMaintenanceCostForFacility(int maintenanceId) {
+		return facilityMaintenanceDAO.getMaintenanceCost(maintenanceId);
+	}
 
-    @Override
-    public Double calcProblemRateForFacility(int facilityId) {
-        return facilityMaintenanceDAO.getProblemRateForFacility(facilityId);
-    }
+	@Override
+	public Double calcProblemRateForFacility(int facilityId) {
+		return facilityMaintenanceDAO.getProblemRateForFacility(facilityId);
+	}
 
-    @Override
-    public Long calcDownTimeForFacility(int facilityId) {
-        return facilityMaintenanceDAO.getDownTimeForFacility(facilityId);
-    }
+	@Override
+	public Long calcDownTimeForFacility(int facilityId) {
+		return facilityMaintenanceDAO.getDownTimeForFacility(facilityId);
+	}
+	
+	@Override
+	public List<String> listFacilityProblems(int facilityId) {
+		return facilityMaintenanceDAO.getListOfFacilityProblems(facilityId);
+	}
 
-    @Override
-    public List<MaintenanceRequestImpl> listMaintRequests() {
-        return facilityMaintenanceDAO.getListOfFacilityMaintenanceReq();
-    }
+	@Override
+	public List<MaintenanceRequest> listMaintRequests() {
+		return facilityMaintenanceDAO.getListOfFacilityMaintenanceReq();
+	}
 
-    @Override
-    public List<MaintenanceImpl> listMaintenance() {
-        return facilityMaintenanceDAO.getListOfMaintenance();
-    }
-
-    @Override
-    public List<String> listFacilityProblems(int facilityId) {
-        return facilityMaintenanceDAO.getListOfFacilityProblems(facilityId);
-    }
-
+	@Override
+	public List<Maintenance> listMaintenance() {
+		return facilityMaintenanceDAO.getListOfMaintenance();
+	}
 }
-*/

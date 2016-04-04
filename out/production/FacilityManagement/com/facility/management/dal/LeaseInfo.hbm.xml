@@ -3,15 +3,14 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.usage.LeaseInfoImpl" table="lease_info" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.usage.LeaseInfoImpl" table="lease_info">
         <id name="leaseId" type="java.lang.Integer">
             <column name="lease_id" />
-            <generator class="identity" />
         </id>
-        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete" lazy="false">
             <column name="facility_id" />
         </many-to-one>
-        <many-to-one name="tenant" class="com.facility.management.model.usage.TenantImpl" cascade="save-update, delete">
+        <many-to-one name="tenant" class="com.facility.management.model.usage.TenantImpl" cascade="save-update, delete" lazy="false">
             <column name="tenant_id" />
         </many-to-one>
         <property name="startDate" type="date">

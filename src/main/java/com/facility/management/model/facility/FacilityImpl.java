@@ -74,4 +74,12 @@ public class FacilityImpl implements Facility {
 		this.facilityType = facilityType;
 	}
 
+	@Override
+	public String toString() {
+		return "FacilityImpl [facilityId=" + facilityId + ", facilityAddress="
+				+ facilityAddress.toString() + ", facilityName=" + facilityName
+				+ ", capacity=" + capacity + ", totalArea=" + totalArea
+				+ ", facilityType=" + facilityType + "]";
+	}
+
 }

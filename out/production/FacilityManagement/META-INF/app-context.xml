@@ -19,41 +19,36 @@
 		<property name="building" ref="building"></property>
 	</bean>
 	
+	<bean id="tenant" class="com.facility.management.model.usage.TenantImpl" scope="prototype"></bean>
+	<bean id="leaseInfo" class="com.facility.management.model.usage.LeaseInfoImpl" scope="prototype">
+		<property name="facility" ref="facility"></property>
+		<property name="tenant" ref="tenant"></property>
+	</bean>
+	
+	<bean id="maintenanceRequest" class="com.facility.management.model.maintenance.MaintenanceRequestImpl" scope="prototype">
+		<property name="facility" ref="facility"></property>
+	</bean>
+	<bean id="maintenance" class="com.facility.management.model.maintenance.MaintenanceImpl" scope="prototype">
+		<property name="maintenanceRequest" ref="maintenanceRequest"></property>
+		<property name="maintenanceCost" ref="maintenanceCost"></property>
+	</bean>
+	<bean id="maintenanceCost" class="com.facility.management.model.maintenance.MaintenanceCostImpl" scope="prototype">
+	</bean>
+	
+	
 	<bean id="facilityDAO" class="com.facility.management.dal.FacilityHibernateDAO"></bean>
 	<bean id="facilityService" class="com.facility.management.service.impl.FacilityServiceImpl" scope="prototype">
 		<property name="facilityDAO" ref="facilityDAO"></property>
 	</bean>
 	
-
-	<!-- <bean id="orderDetail" class="com.online.bookstore.model.order.OrderDetailImpl" scope="prototype">
-		<property name="book" ref="book" />
-	</bean>
-
-	<bean id="order" class="com.online.bookstore.model.order.OrderImpl" scope="prototype">	
-		<property name="orderDetails">
-         	<list/>
-        	uncomment these lines if you want to create a list with NULL object of type OrderDetail
-         	<list>
-             	<ref bean="orderDetail" />
-            </list>
-           
-         </property>
+	<bean id="facilityUsageDAO" class="com.facility.management.dal.FacilityUsageHibernateDAO"></bean>
+	<bean id="facilityUsageService" class="com.facility.management.service.impl.FacilityUsageServiceImpl" scope="prototype">
+		<property name="facilityUsageDAO" ref="facilityUsageDAO"></property>
 	</bean>
 	
-	<bean id="customer" class="com.online.bookstore.model.customer.CustomerImpl" scope="prototype">
-		<property name="billingAddress" ref="billingAddress" />
-		<property name="shippingAddress" ref="shippingAddress" />
-		Inject the Order List
-        <property name="orders">
-        	<list/>
-        	uncomment these lines if you want to create a list with NULL object of type Order
-        	<list>
-            	<ref bean="order" />
-            </list>
-            
-         </property>
+	<bean id="facilityMaintenanceDAO" class="com.facility.management.dal.FacilityMaintenanceHibernateDAO"></bean>
+	<bean id="facilityMaintenanceService" class="com.facility.management.service.impl.FacilityMaintenanceServiceImpl" scope="prototype">
+		<property name="facilityMaintenanceDAO" ref="facilityMaintenanceDAO"></property>
 	</bean>
-	
-	<bean id="customerService" class="com.online.bookstore.model.service.CustomerService" scope="prototype"></bean> -->
 	
 </beans>

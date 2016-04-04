@@ -3,10 +3,9 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.usage.InspectionImpl" table="inspection" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.usage.InspectionImpl" table="inspection">
         <id name="inspectionId" type="java.lang.Integer">
             <column name="inspection_id" />
-            <generator class="identity" />
         </id>
         <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
             <column name="facility_id" />

@@ -1,25 +1,29 @@
 package com.facility.management.client;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.facility.management.dal.FacilityHibernateDAO;
 import com.facility.management.model.facility.Building;
 import com.facility.management.model.facility.BuildingUnit;
 import com.facility.management.model.facility.Facility;
 import com.facility.management.model.facility.FacilityAddress;
-import com.facility.management.model.facility.FacilityAddressImpl;
-import com.facility.management.model.facility.FacilityImpl;
 import com.facility.management.model.facility.FacilityType;
+import com.facility.management.model.maintenance.Maintenance;
+import com.facility.management.model.maintenance.MaintenanceCost;
+import com.facility.management.model.maintenance.MaintenanceRequest;
+import com.facility.management.model.usage.Inspection;
+import com.facility.management.model.usage.LeaseInfo;
+import com.facility.management.model.usage.LeaseStatus;
+import com.facility.management.service.FacilityMaintenanceService;
 import com.facility.management.service.FacilityService;
+import com.facility.management.service.FacilityUsageService;
+import com.facility.management.util.DateUtil;
 
 public class FacilityClient {
-
-    /*private static FacilityService facilityService = new FacilityServiceImpl();
-    private static FacilityUsageService facilityUsageService = new FacilityUsageServiceImpl();
-    private static FacilityMaintenanceService facilityMaintenanceService = new FacilityMaintenanceServiceImpl();*/
 	
 	private static ApplicationContext context;
 	
@@ -38,12 +42,9 @@ public class FacilityClient {
 
         Facility facilityBuildingUnit = createNewFacility(101, FacilityType.UNIT.name());
         addFacilityDetail(facilityBuildingUnit, 200, 1);
-        
-        /*removeFacility(99);
-    	removeFacility(101);*/
 
         //print facility information
-        /*printFacilityInfo(99);
+        printFacilityInfo(99);
         printFacilityInfo(101);
 
         //print all facilities
@@ -117,13 +118,14 @@ public class FacilityClient {
         printFacilityProblems(101);
 
         //remove facility
-        removeFacility(99);
+        /*removeFacility(99);
         removeFacility(101);*/
 
 
     }
     
-    /*private static void printFacilityProblems(int facilityId) {
+    private static void printFacilityProblems(int facilityId) {
+    	FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
         List<String> problemList = facilityMaintenanceService.listFacilityProblems(facilityId);
         System.out.println("Printing problems for facility id : " + facilityId + " ----- ");
         for (String problem : problemList) {
@@ -133,55 +135,82 @@ public class FacilityClient {
     }
 
     private static void printDownTimeForFacility(int facilityId) {
+    	FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
     	long downTime = facilityMaintenanceService.calcDownTimeForFacility(facilityId);
     	System.out.println("Total Down time for Facility id : " + facilityId + " is ---- " + downTime + " minutes");
     	System.out.println();
 	}
 
 	private static void printProblemRateForFacility(int facilityId) {
+		FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
     	double prblmRate = facilityMaintenanceService.calcProblemRateForFacility(facilityId);
     	System.out.println("Problem rate(per year) for Facility id : " + facilityId + " is ---- " + prblmRate);
     	System.out.println();
 	}
+    
+    private static void printAllFacilityMaintenanceReq() {
+    	FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
+	    List<MaintenanceRequest> maintenanceReqList = facilityMaintenanceService.listMaintRequests();
+	    System.out.println("*************** Printing all maintenance request in database : ");
+	    for (MaintenanceRequest maintenceReq : maintenanceReqList) {
+	        System.out.println(maintenceReq.toString());
+	    }
+	    System.out.println();
+	}
+	
+	private static void printAllFacilityMaintenance() {
+		FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
+	    List<Maintenance> maintenanceList = facilityMaintenanceService.listMaintenance();
+	    System.out.println("*************** Printing all maintenance in database : ");
+	    for (Maintenance maintence : maintenanceList) {
+	        System.out.println(maintence.toString());
+	    }
+	    System.out.println();
+	}
 
 	private static void printMaintenanceCost(int maintenanceId) {
-        MaintenanceCostImpl maintenanceCost = new MaintenanceCostImpl();
-        maintenanceCost.setMaintenanceId(maintenanceId);
-        maintenanceCost.setMaterialCost(100);
-        maintenanceCost.setLaborCost(25);
-        maintenanceCost.setTotalCost(maintenanceCost.getMaterialCost() + maintenanceCost.getLaborCost());
-        maintenanceCost.setPaid(true);
-        System.out.println("Maintenance id: " + maintenanceId +
-                " total cost is " + facilityMaintenanceService.calcMaintenanceCostForFacility(maintenanceCost));
+		FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
+        MaintenanceCost maintenanceCost = facilityMaintenanceService.retrieveMaintenanceCostForFacility(maintenanceId);
+        System.out.println(maintenanceCost.toString());
         System.out.println();
     }
 
     private static void scheduleMaintenance(int maintenanceId, int mainReqId) {
-        MaintenanceImpl maintenance = new MaintenanceImpl();
+    	FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
+        Maintenance maintenance = (Maintenance) context.getBean("maintenance");
         maintenance.setMaintenanceId(maintenanceId);
-        maintenance.setMaintenanceReqId(mainReqId);
+        maintenance.getMaintenanceRequest().setMainReqId(mainReqId);
         maintenance.setWorkerName("Alex");
-        maintenance.setWorkerPhoneNum("630-800-0969");
+        maintenance.setWorkerPhone("630-800-0969");
         maintenance.setStartDateTime(DateUtil.createDateTime(2015, 3, 21, 13, 00));
         maintenance.setEndDateTime(DateUtil.createDateTime(2015, 3, 21, 14, 00));
+        MaintenanceCost maintenanceCost = maintenance.getMaintenanceCost();
+        maintenanceCost.setMaintenanceId(maintenanceId);
+        maintenanceCost.setMaterialCost(new BigDecimal(100));
+        maintenanceCost.setLaborCost(new BigDecimal(25));
+        maintenanceCost.setTotalCost(maintenanceCost.getMaterialCost().add(maintenanceCost.getLaborCost()));
+        maintenanceCost.setIsPaid("yes");
+        maintenanceCost.setMaintenance(maintenance);
         facilityMaintenanceService.scheduleMaintenance(maintenance);
         System.out.println();
     }
 
     private static void createMaintenanceRequest(int mainReqId, int facilityId, int year) {
-        MaintenanceRequestImpl maintenanceRequest = new MaintenanceRequestImpl();
-        maintenanceRequest.setMaintenanceReqId(mainReqId);
-        maintenanceRequest.setFacilityId(facilityId);
-        maintenanceRequest.setRequestDetail("water leaking from shower faucet");
-        maintenanceRequest.setRequesterName("Syeda");
-        maintenanceRequest.setRequesterEmail("snowreen@luc.edu");
-        maintenanceRequest.setRequestSubject("Shower broken");
+    	FacilityMaintenanceService facilityMaintenanceService = (FacilityMaintenanceService) context.getBean("facilityMaintenanceService");
+        MaintenanceRequest maintenanceRequest = (MaintenanceRequest) context.getBean("maintenanceRequest");
+        maintenanceRequest.setMainReqId(mainReqId);
+        maintenanceRequest.getFacility().setFacilityId(facilityId);
+        maintenanceRequest.setDetail("water leaking from shower faucet");
+        maintenanceRequest.setNameOfRequester("Syeda");
+        maintenanceRequest.setEmail("snowreen@luc.edu");
+        maintenanceRequest.setSubject("Shower broken");
         maintenanceRequest.setRequestDate(DateUtil.createDateTime(year, 3, 21, 12, 55));
         facilityMaintenanceService.makeFacilityMaintRequest(maintenanceRequest);
         System.out.println();
     }
 
     private static void printUsageRateByFacility() {
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
         Map<Integer, Double> usageRateMap = facilityUsageService.calcUsageRate();
         System.out.println("Usage Rate of facilities (days used every year in percentage): ");
         for (Map.Entry<Integer, Double> entry : usageRateMap.entrySet()) {
@@ -191,19 +220,20 @@ public class FacilityClient {
     }
 
     private static void printActualUsageByFacility() {
-        Map<Integer, Integer> actualUsageMap = facilityUsageService.listActualUsage();
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
+        Map<Integer, Long> actualUsageMap = facilityUsageService.listActualUsage();
         System.out.println("Actual Usage of facilities given below : ");
-        for (Map.Entry<Integer, Integer> entry : actualUsageMap.entrySet()) {
+        for (Map.Entry<Integer, Long> entry : actualUsageMap.entrySet()) {
             System.out.println("Facility id : " + entry.getKey() + " ---- " + "Usage (in days) : " + entry.getValue());
         }
         System.out.println();
     }
 
     private static void printInspections(int facilityId) {
-        List<InspectionImpl> inspectionList = facilityUsageService.listInspections(facilityId);
-        System.out.println("Printing all inspections for facility id: " + facilityId);
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
+        List<Inspection> inspectionList = facilityUsageService.listInspections(facilityId);
         if (inspectionList != null && inspectionList.size() > 0) {
-            for (InspectionImpl inspection : inspectionList) {
+            for (Inspection inspection : inspectionList) {
                 System.out.println(inspection.toString());
             }
         } else {
@@ -214,6 +244,7 @@ public class FacilityClient {
     }
 
     private static void vacateFacility(int facilityId, String vacateDate) {
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
         boolean isFacilityVacated = facilityUsageService.vacateFacility(facilityId, DateUtil.getParsedDate(vacateDate));
         if (isFacilityVacated) {
             System.out.println("Facility id : " + facilityId + " " +
@@ -226,6 +257,7 @@ public class FacilityClient {
     }
 
     private static void checkFacilityUsage(int facilityId, String beginDate, String endDate) {
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
         boolean isFacilityInUse = facilityUsageService.isInUseDuringInterval(facilityId,
                 DateUtil.getParsedDate(beginDate), DateUtil.getParsedDate(endDate));
         if (isFacilityInUse) {
@@ -239,58 +271,41 @@ public class FacilityClient {
     }
 
     private static void createNewLease(int leaseId, int facilityId) {
-        LeaseInfoImpl leaseInfo = new LeaseInfoImpl();
-        leaseInfo.setFacilityId(facilityId);
-        leaseInfo.setCustomerId(1);
+    	FacilityUsageService facilityUsageService = (FacilityUsageService) context.getBean("facilityUsageService");
+        LeaseInfo leaseInfo = (LeaseInfo) context.getBean("leaseInfo");
+        leaseInfo.getFacility().setFacilityId(facilityId);
+        leaseInfo.getTenant().setTenantId(1);
         leaseInfo.setLeaseId(leaseId);
-        leaseInfo.setSecurityDeposit(500);
+        leaseInfo.setSecurityDeposite(new BigDecimal(500));
         leaseInfo.setStartDate(DateUtil.getParsedDate("2016-03-01"));
         leaseInfo.setEndDate(DateUtil.getParsedDate("2016-06-30"));
+        leaseInfo.setStatus(LeaseStatus.ACTIVE.name());
         facilityUsageService.assignFacilityToUse(leaseInfo);
         System.out.println();
     }
 
-    private static void removeFacility(int facilityId) {
-        facilityService.removeFacility(facilityId);
-    }
-
     private static void printAvailableCapacity(int facilityId) {
+    	FacilityService facilityService = (FacilityService) context.getBean("facilityService");
         System.out.println("Available Capacity for facility id: " +
                 facilityId + " is --------- " + facilityService.requestAvailableCapacity(facilityId));
         System.out.println();
     }
 
     private static void printAllFacilities() {
-        List<FacilityImpl> facilityList = facilityService.listFacilities();
+    	FacilityService facilityService = (FacilityService) context.getBean("facilityService");
+    	List<Facility> facilities = facilityService.listFacilities();
         System.out.println("Printing all facilities in database : ");
-        for (FacilityImpl facility : facilityList) {
+        for (Facility facility : facilities) {
             System.out.println(facility.toString());
-        }
-        System.out.println();
-    }
-
-    private static void printAllFacilityMaintenanceReq() {
-        List<MaintenanceRequestImpl> maintenanceReqList = facilityMaintenanceService.listMaintRequests();
-        System.out.println("Printing all maintenance request in database : ");
-        for (MaintenanceRequestImpl maintenceReq : maintenanceReqList) {
-            System.out.println(maintenceReq.toString());
-        }
-        System.out.println();
-    }
-    
-    private static void printAllFacilityMaintenance() {
-        List<MaintenanceImpl> maintenanceList = facilityMaintenanceService.listMaintenance();
-        System.out.println("Printing all maintenance in database : ");
-        for (MaintenanceImpl maintence : maintenanceList) {
-            System.out.println(maintence.toString());
         }
         System.out.println();
     }
     
     private static void printFacilityInfo(int facilityId) {
+    	FacilityService facilityService = (FacilityService) context.getBean("facilityService");
         System.out.println(facilityService.getFacilityInformation(facilityId).toString());
         System.out.println();
-    }*/
+    }
 
     private static Facility createNewFacility(int facilityId, String facilityType) {
         Facility facility = (Facility) context.getBean("facility");

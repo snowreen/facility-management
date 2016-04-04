@@ -1,6 +1,6 @@
 package com.facility.management.model.facility;
 
-import java.util.List;
+import java.util.Set;
 
 public interface FacilityAddress {
 
@@ -24,8 +24,8 @@ public interface FacilityAddress {
 
 	void setZipcode(String zipcode);
 	
-	List<Facility> getFacilities();
+	Set<Facility> getFacilities();
 	
-	void setFacilities(List<Facility> facilities);
+	void setFacilities(Set<Facility> facilities);
 
 }

@@ -7,7 +7,7 @@
         <id name="facilityId" type="java.lang.Integer">
             <column name="facility_id" />
         </id>
-        <many-to-one name="facilityAddress" class="FacilityAddressImpl">
+        <many-to-one name="facilityAddress" class="FacilityAddressImpl" lazy="false">
             <column name="facility_address_id" />
         </many-to-one>
         <property name="facilityName" type="string">

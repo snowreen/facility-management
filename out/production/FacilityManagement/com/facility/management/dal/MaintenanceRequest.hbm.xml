@@ -3,12 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.maintenance.MaintenanceRequestImpl" table="maintenance_request" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.maintenance.MaintenanceRequestImpl" table="maintenance_request">
         <id name="mainReqId" type="java.lang.Integer">
             <column name="main_req_id" />
-            <generator class="identity" />
         </id>
-        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete">
+        <many-to-one name="facility" class="com.facility.management.model.facility.FacilityImpl" cascade="save-update, delete" lazy="false">
             <column name="facility_id" />
         </many-to-one>
         <property name="requestDate" type="timestamp">

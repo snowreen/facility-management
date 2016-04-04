@@ -3,12 +3,9 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.facility.management.model.maintenance.MaintenanceCostImpl" table="maintenance_cost" catalog="FACILITY_MANAGEMENT">
+    <class name="com.facility.management.model.maintenance.MaintenanceCostImpl" table="maintenance_cost">
         <id name="maintenanceId" type="java.lang.Integer">
             <column name="maintenance_id" />
-            <generator class="foreign">
-                <param name="property">maintenance</param>
-            </generator>
         </id>
         <one-to-one name="maintenance" class="com.facility.management.model.maintenance.MaintenanceImpl" constrained="true" cascade="save-update, delete"></one-to-one>
         <property name="materialCost" type="big_decimal">
